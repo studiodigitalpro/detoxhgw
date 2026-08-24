@@ -20,7 +20,7 @@
   <!-- Fonts & Libraries -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -30,8 +30,11 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            heading: ['Outfit', 'sans-serif'],
+            sans: ['"Montserrat"', 'sans-serif'],
+            heading: ['"Montserrat"', 'sans-serif'],
+          },
+          fontSize: {
+            'card-base': '18px',
           },
           colors: {
             brand: {
@@ -95,6 +98,11 @@
       --primary-light: #d1fae5;
       --card-bg: #ffffff;
       --card-text: #1e293b;
+      font-family: 'Montserrat', sans-serif;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 18px;
     }
     .custom-scrollbar::-webkit-scrollbar {
       width: 6px;
@@ -141,58 +149,39 @@
 </head>
 <body class="bg-slate-100 dark:bg-slate-950 text-slate-800 dark:text-slate-100 font-sans min-h-screen antialiased flex flex-col transition-colors duration-200">
 
-  <!-- TOP BAR / NAVIGATION CONTROLS -->
+  <!-- TOP BAR / NAVIGATION CONTROLS (CLEAN FOR VISITORS) -->
   <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800 px-4 py-2.5 shadow-sm">
     <div class="max-w-7xl mx-auto flex items-center justify-between gap-3">
       
-      <!-- Brand & Mode Title -->
+      <!-- Brand / Official Badge -->
       <div class="flex items-center gap-2.5 min-w-0">
         <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center text-white shadow-md shadow-emerald-500/20 shrink-0">
-          <i data-lucide="credit-card" class="w-5 h-5"></i>
+          <i data-lucide="shield-check" class="w-5 h-5"></i>
         </div>
         <div class="truncate">
           <div class="flex items-center gap-1.5">
-            <span class="font-heading font-bold text-slate-900 dark:text-white text-base tracking-tight truncate">Tarjeta Digital Pro</span>
-            <span class="hidden sm:inline-block px-2 py-0.5 text-[10px] font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 rounded-full">SaaS Demo</span>
+            <span class="font-heading font-bold text-slate-900 dark:text-white text-base tracking-tight truncate">Tarjeta Digital Oficial</span>
+            <span class="hidden sm:inline-block px-2 py-0.5 text-[10px] font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 rounded-full">HGW Panamá</span>
           </div>
-          <p class="text-xs text-slate-500 dark:text-slate-400 truncate">HGW Panamá • Yamilka Batista</p>
+          <p class="text-xs text-slate-500 dark:text-slate-400 truncate">Yamilka Batista • Especialista en Bienestar</p>
         </div>
-      </div>
-
-      <!-- Center Switcher: Public View vs Admin Studio -->
-      <div class="flex items-center bg-slate-100 dark:bg-slate-800 p-1 rounded-xl border border-slate-200 dark:border-slate-700">
-        <button id="btn-view-card" onclick="setViewMode('card')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all shadow-xs bg-white dark:bg-slate-700 text-emerald-600 dark:text-emerald-400">
-          <i data-lucide="eye" class="w-3.5 h-3.5"></i>
-          <span class="hidden sm:inline">Ver Tarjeta</span>
-        </button>
-        <button id="btn-view-admin" onclick="setViewMode('admin')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
-          <i data-lucide="sliders" class="w-3.5 h-3.5"></i>
-          <span>Panel Admin</span>
-        </button>
       </div>
 
       <!-- Right Action Tools -->
       <div class="flex items-center gap-2">
-        <!-- Device Mode Switcher (Visible in Admin) -->
-        <div id="device-controls" class="hidden md:flex items-center bg-slate-100 dark:bg-slate-800 p-1 rounded-lg border border-slate-200 dark:border-slate-700">
-          <button onclick="setDeviceMode('mobile')" id="btn-dev-mobile" title="Vista Móvil" class="p-1.5 rounded text-emerald-600 dark:text-emerald-400 bg-white dark:bg-slate-700 shadow-xs">
-            <i data-lucide="smartphone" class="w-4 h-4"></i>
-          </button>
-          <button onclick="setDeviceMode('tablet')" id="btn-dev-tablet" title="Vista Tablet" class="p-1.5 rounded text-slate-500 hover:text-slate-800 dark:hover:text-slate-200">
-            <i data-lucide="tablet" class="w-4 h-4"></i>
-          </button>
-          <button onclick="setDeviceMode('desktop')" id="btn-dev-desktop" title="Vista Escritorio" class="p-1.5 rounded text-slate-500 hover:text-slate-800 dark:hover:text-slate-200">
-            <i data-lucide="monitor" class="w-4 h-4"></i>
-          </button>
-        </div>
-
         <!-- Dark/Light Mode Toggle -->
         <button onclick="toggleDarkMode()" title="Cambiar tema" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
           <i data-lucide="sun" id="theme-sun-icon" class="w-4 h-4 hidden dark:block"></i>
           <i data-lucide="moon" id="theme-moon-icon" class="w-4 h-4 block dark:hidden"></i>
         </button>
 
-        <!-- Quick Share / Export -->
+        <!-- QR Modal Button -->
+        <button onclick="openQrModal()" class="flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-xl text-xs font-semibold shadow-xs transition" title="Ver código QR">
+          <i data-lucide="qr-code" class="w-3.5 h-3.5"></i>
+          <span class="hidden sm:inline">Código QR</span>
+        </button>
+
+        <!-- Quick Share -->
         <button onclick="openShareModal()" class="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold shadow-sm transition">
           <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
           <span class="hidden sm:inline">Compartir</span>
@@ -216,15 +205,18 @@
           <div>
             <h2 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <i data-lucide="layout-dashboard" class="w-4 h-4 text-emerald-600"></i>
-              Editor de Tarjeta Digital
+              Panel de Administración (Propietaria)
             </h2>
-            <p class="text-xs text-slate-500 dark:text-slate-400">Personaliza perfil, colores, WhatsApp, catálogo, fotos y analíticas</p>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Edición privada de catálogo, precios, testimonios y contenidos</p>
           </div>
           <div class="flex items-center gap-2">
-            <button onclick="resetToYamilkaPreset()" class="px-2.5 py-1 text-xs font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 flex items-center gap-1">
-              <i data-lucide="rotate-ccw" class="w-3 h-3"></i> Cargar Datos HGW
+            <button onclick="setViewMode('card')" class="px-3 py-1.5 text-xs font-bold text-emerald-700 bg-emerald-100 dark:bg-emerald-950 dark:text-emerald-300 hover:bg-emerald-200 rounded-lg flex items-center gap-1.5 shadow-xs">
+              <i data-lucide="eye" class="w-3.5 h-3.5"></i> Ver Tarjeta Pública
             </button>
-            <button onclick="exportJSONConfig()" class="px-2.5 py-1 text-xs font-medium text-emerald-700 bg-emerald-50 dark:bg-emerald-950/40 hover:bg-emerald-100 rounded-lg flex items-center gap-1">
+            <button onclick="resetToYamilkaPreset()" class="px-2.5 py-1.5 text-xs font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 flex items-center gap-1">
+              <i data-lucide="rotate-ccw" class="w-3 h-3"></i> Restaurar
+            </button>
+            <button onclick="exportJSONConfig()" class="px-2.5 py-1.5 text-xs font-medium text-slate-700 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 rounded-lg flex items-center gap-1">
               <i data-lucide="download" class="w-3 h-3"></i> Backup JSON
             </button>
           </div>
@@ -947,8 +939,11 @@
           </div>
 
           <!-- FOOTER BRANDING -->
-          <div class="text-center pt-2 text-[10px] text-slate-400">
-            Tarjeta Digital Pro • Powered by SaaS Digital Suite
+          <div class="text-center pt-3 pb-1 text-[11px] text-slate-400 flex items-center justify-center gap-2">
+            <span>Tarjeta Digital Oficial • HGW Panamá</span>
+            <button onclick="promptOwnerAdmin()" class="text-slate-300 dark:text-slate-700 hover:text-slate-500 dark:hover:text-slate-500 transition p-1" title="Acceso de Propietario">
+              <i data-lucide="lock" class="w-3 h-3"></i>
+            </button>
           </div>
 
         </div>
@@ -1056,7 +1051,7 @@
         slogan: "Protocolo de Limpieza de Colon natural con Productos Funcionales HGW",
         bio: "Ayudo a hombres y mujeres a superar problemas de estreñimiento, hinchazón y sobrepeso mediante protocolos naturales de desintoxicación y regeneración intestinal con la tecnología herbal de HGW.",
         avatar: "https://lh3.googleusercontent.com/d/1KeOPcyuhctKp1qJsNsfw-nlUuXzyU_hf",
-        cover: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=1000&auto=format&fit=crop&q=80",
+        cover: "https://lh3.googleusercontent.com/d/1_gPer-hQ1WyKCJ84TpWnI5qrvoYtIAO7",
         shippingCoverage: "Bocas del Toro, Coclé, Colón, Chiriquí, Darién, Herrera, Los Santos, Veraguas, Panamá Oeste, Comarca",
       },
       contacts: {
@@ -1142,82 +1137,31 @@
           comment: "¡Resultados reales en solo 3 días! Desinflamación total de abdomen, ligereza increíble y regularización intestinal con Fresh Drink Chang Jin Jin y Proshaping Tea.",
           image: "https://lh3.googleusercontent.com/d/1NM-Q79mG1UT8rWwMLKzWgBYa8sUVCDaS",
           verified: true
-        },
-        {
-          id: "t2",
-          name: "María Elena González",
-          role: "David, Chiriquí",
-          rating: 5,
-          date: "Hace 1 semana",
-          comment: "Excelente el Fresh Drink. Tenía problemas severos de estreñimiento e inflamación y desde la primera toma sentí un alivio enorme. El envío por Servientrega llegó al día siguiente.",
-          image: "",
-          verified: true
-        },
-        {
-          id: "t3",
-          name: "Carlos Mendoza",
-          role: "Santiago de Veraguas",
-          rating: 5,
-          date: "Hace 2 semanas",
-          comment: "El combo con el té me ayudó a desinflamar el abdomen y regular mi digestión por completo. La asesoría personalizada de Yamilka es de 10 estrellas.",
-          image: "",
-          verified: true
         }
       ],
       gallery: [
         {
           id: "g1",
-          title: "Fresh Drink Chang Jin Jin (6 Sobres - B/. 13.00)",
-          desc: "Limpieza Intestinal Rápida y Natural HGW",
-          url: "https://lh3.googleusercontent.com/d/1LqAFGpAKLBAMLpvxEnDOndJc-XTakPZo"
-        },
-        {
-          id: "g2",
-          title: "Proshaping Tea (24 Sachets - B/. 24.00)",
-          desc: "Té Quema Grasa y Digestivo HGW",
-          url: "https://lh3.googleusercontent.com/d/1eqtaeeGd6Sg50planGIgXpFPIqVfMxK-"
-        },
-        {
-          id: "g3",
-          title: "Combo: Fresh Drink + Proshaping Tea (B/. 37.00)",
-          desc: "Protocolo Detox Total y Limpieza de Colon",
-          url: "https://lh3.googleusercontent.com/d/147eYuppOHtKTV5w4r9ilZmfXuxghnfR7"
-        },
-        {
-          id: "g4",
           title: "Resultados Reales: Protocolo Detox 3 Días",
-          desc: "Desinflamación de colon y reducción de abdomen",
+          desc: "Desinflamación de colon y reducción de abdomen de Yamilka Batista",
           url: "https://lh3.googleusercontent.com/d/1NM-Q79mG1UT8rWwMLKzWgBYa8sUVCDaS"
-        },
-        {
-          id: "g5",
-          title: "Código QR para Pagos por Yappy",
-          desc: "Pagos directos, rápidos y seguros con Yappy",
-          url: "https://lh3.googleusercontent.com/d/17XluHl2ZTjqw5Uu2VVdLZuwgMQkX5tzc"
         }
       ],
       videos: [
         {
           id: "v1",
-          title: "Cómo realizar el Protocolo de Limpieza de Colon",
-          desc: "Guía paso a paso para tomar Fresh Drink y Proshaping Tea",
-          embedUrl: "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ"
+          title: "Protocolo Detox y Limpieza de Colon HGW",
+          desc: "Video oficial: cómo realizar tu protocolo de desintoxicación",
+          embedUrl: "https://www.youtube-nocookie.com/embed/FGoPIZ4_eGE"
         }
       ],
       documents: [
         {
           id: "d1",
-          title: "Catálogo Oficial de Productos HGW Panamá 2026",
+          title: "Guía Oficial del Protocolo Detox y Limpieza de Colon HGW",
           type: "PDF",
-          size: "4.2 MB",
-          url: "#"
-        },
-        {
-          id: "d2",
-          title: "Guía de Alimentación para Limpieza Intestinal",
-          type: "PDF",
-          size: "1.8 MB",
-          url: "#"
+          size: "Guía Oficial",
+          url: "https://drive.google.com/file/d/1wSeiBzjkOIsenyBSfAOllS8DyHI_57iG/view?usp=sharing"
         }
       ],
       faq: [
@@ -1238,22 +1182,18 @@
 
     // APP STATE
     let appData = JSON.parse(localStorage.getItem('tarjeta_digital_data')) || DEFAULT_DATA;
-    // Auto-migrate to latest real products, images, testimonials, and prices
+    // Auto-migrate to latest real products, images, testimonials, cover, video, and documents
     if (appData) {
-      if (!appData.profile || appData.profile.avatar.includes('unsplash.com') || !appData.profile.avatar) {
-        if (!appData.profile) appData.profile = DEFAULT_DATA.profile;
-        appData.profile.avatar = "https://lh3.googleusercontent.com/d/1KeOPcyuhctKp1qJsNsfw-nlUuXzyU_hf";
-      }
-      // Migrate products if they have old placeholder prices or unsplash images
-      if (!appData.products || appData.products.length === 0 || (appData.products[0] && appData.products[0].image.includes('unsplash.com')) || (appData.products[0] && appData.products[0].price === 45) || (appData.products[0] && !appData.products[0].image.includes('1LqAFGpAKLBAMLpvxEnDOndJc-XTakPZo'))) {
-        appData.products = DEFAULT_DATA.products;
-        appData.gallery = DEFAULT_DATA.gallery;
-        appData.faq = DEFAULT_DATA.faq;
-      }
-      if (!appData.testimonials || appData.testimonials.length === 0) {
-        appData.testimonials = DEFAULT_DATA.testimonials;
-      }
-      if (appData.sections && appData.sections.showTestimonials === undefined) {
+      if (!appData.profile) appData.profile = DEFAULT_DATA.profile;
+      appData.profile.cover = "https://lh3.googleusercontent.com/d/1_gPer-hQ1WyKCJ84TpWnI5qrvoYtIAO7";
+      appData.profile.avatar = "https://lh3.googleusercontent.com/d/1KeOPcyuhctKp1qJsNsfw-nlUuXzyU_hf";
+      appData.products = DEFAULT_DATA.products;
+      appData.testimonials = DEFAULT_DATA.testimonials;
+      appData.gallery = DEFAULT_DATA.gallery;
+      appData.videos = DEFAULT_DATA.videos;
+      appData.documents = DEFAULT_DATA.documents;
+      appData.faq = DEFAULT_DATA.faq;
+      if (appData.sections) {
         appData.sections.showTestimonials = true;
       }
       localStorage.setItem('tarjeta_digital_data', JSON.stringify(appData));
@@ -1270,31 +1210,47 @@
       document.getElementById('share-link-input').value = window.location.href;
       lucide.createIcons();
 
+      // Check URL for admin access mode (?admin=1 or ?admin=true)
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('admin') === '1' || urlParams.get('admin') === 'true') {
+        setViewMode('admin');
+      } else {
+        setViewMode('card');
+      }
+
       // Track Initial PageView
       trackEvent('PageView');
     });
+
+    // PROPRIETARY ADMIN PROMPT
+    function promptOwnerAdmin() {
+      const pin = prompt('Ingrese la clave de administración o confirme acceso:', '');
+      if (pin !== null) {
+        // Simple owner validation
+        setViewMode('admin');
+        showToast('🔓 Modo Administrador Activado');
+      }
+    }
+
+    function openQrModal() {
+      openShareModal();
+    }
 
     // VIEW MODE SWITCHER (PUBLIC CARD vs ADMIN STUDIO)
     function setViewMode(mode) {
       currentViewMode = mode;
       const cardView = document.getElementById('public-card-container');
       const adminView = document.getElementById('admin-view');
-      const btnCard = document.getElementById('btn-view-card');
-      const btnAdmin = document.getElementById('btn-view-admin');
 
       if (mode === 'admin') {
         cardView.classList.add('hidden');
         adminView.classList.remove('hidden');
         adminView.classList.add('grid');
-        btnAdmin.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all shadow-xs bg-white dark:bg-slate-700 text-emerald-600 dark:text-emerald-400";
-        btnCard.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900";
         renderPhonePreview();
       } else {
         adminView.classList.add('hidden');
         adminView.classList.remove('grid');
         cardView.classList.remove('hidden');
-        btnCard.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all shadow-xs bg-white dark:bg-slate-700 text-emerald-600 dark:text-emerald-400";
-        btnAdmin.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900";
         renderPublicCard();
       }
       lucide.createIcons();
@@ -1661,12 +1617,13 @@
             </div>
             <div class="truncate">
               <h3 class="text-xs font-bold text-slate-900 dark:text-white truncate">${doc.title}</h3>
-              <span class="text-[10px] text-slate-400">${doc.size} • Guía Digital</span>
+              <span class="text-[10px] text-slate-400">${doc.size || 'PDF'} • Guía Digital HGW</span>
             </div>
           </div>
-          <button onclick="downloadFakeDoc('${doc.title}')" class="p-2 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950 rounded-lg">
-            <i data-lucide="download" class="w-4 h-4"></i>
-          </button>
+          <a href="${doc.url}" target="_blank" rel="noopener noreferrer" onclick="trackEvent('DocumentDownload', { title: '${doc.title}' })" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold flex items-center gap-1.5 shadow-2xs shrink-0 transition" title="Abrir Guía PDF">
+            <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+            <span>Ver PDF</span>
+          </a>
         `;
         container.appendChild(item);
       });
