@@ -1,0 +1,6 @@
+{
+  "name": "Tarjeta Digital Pro - Premium Business Card Platform",
+  "description": "Plataforma premium de tarjetas de presentación digitales y mini-sitios web para profesionales, emprendedores y marcas con editor en tiempo real, catálogo de productos, QR interactivo y analíticas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
