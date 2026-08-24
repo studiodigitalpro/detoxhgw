@@ -6,16 +6,35 @@
   <title>Yamilka Batista | Emprendedora Digital - HGW Panamá</title>
   <meta name="description" content="Especialista en Salud y Bienestar. Protocolo de Limpieza de Colon natural y Detox con Productos Funcionales HGW en Panamá." />
   
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="profile" />
-  <meta property="og:title" content="Yamilka Batista - Tarjeta Digital Pro" />
-  <meta property="og:description" content="Salud y Bienestar | Protocolo Detox y Limpieza de Colon - HGW Panamá" />
-  <meta property="og:image" content="https://lh3.googleusercontent.com/d/1KeOPcyuhctKp1qJsNsfw-nlUuXzyU_hf" />
+  <!-- Favicon / Web App Icon (Foto de Perfil Oficial) -->
+  <link rel="icon" type="image/jpeg" href="https://lh3.googleusercontent.com/d/1KeOPcyuhctKp1qJsNsfw-nlUuXzyU_hf" />
+  <link rel="shortcut icon" type="image/jpeg" href="https://lh3.googleusercontent.com/d/1KeOPcyuhctKp1qJsNsfw-nlUuXzyU_hf" />
+  <link rel="apple-touch-icon" href="https://lh3.googleusercontent.com/d/1KeOPcyuhctKp1qJsNsfw-nlUuXzyU_hf" />
+  <link rel="apple-touch-icon" sizes="57x57" href="https://lh3.googleusercontent.com/d/1KeOPcyuhctKp1qJsNsfw-nlUuXzyU_hf" />
+  <link rel="apple-touch-icon" sizes="72x72" href="https://lh3.googleusercontent.com/d/1KeOPcyuhctKp1qJsNsfw-nlUuXzyU_hf" />
+  <link rel="apple-touch-icon" sizes="114x114" href="https://lh3.googleusercontent.com/d/1KeOPcyuhctKp1qJsNsfw-nlUuXzyU_hf" />
+  <link rel="apple-touch-icon" sizes="144x144" href="https://lh3.googleusercontent.com/d/1KeOPcyuhctKp1qJsNsfw-nlUuXzyU_hf" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://lh3.googleusercontent.com/d/1KeOPcyuhctKp1qJsNsfw-nlUuXzyU_hf" />
+  <link rel="image_src" href="https://lh3.googleusercontent.com/d/1KeOPcyuhctKp1qJsNsfw-nlUuXzyU_hf" />
   
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
+  <!-- Open Graph / WhatsApp / Facebook / LinkedIn Previews -->
+  <meta property="og:type" content="profile" />
+  <meta property="og:site_name" content="Yamilka Batista - HGW Panamá" />
+  <meta property="og:title" content="Yamilka Batista | Emprendedora Digital - HGW Panamá" />
+  <meta property="og:description" content="Especialista en Salud y Bienestar • Protocolo Detox & Limpieza de Colon Natural con Productos Funcionales HGW." />
+  <meta property="og:image" content="https://lh3.googleusercontent.com/d/1KeOPcyuhctKp1qJsNsfw-nlUuXzyU_hf" />
+  <meta property="og:image:secure_url" content="https://lh3.googleusercontent.com/d/1KeOPcyuhctKp1qJsNsfw-nlUuXzyU_hf" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="600" />
+  <meta property="og:image:height" content="600" />
+  <meta property="og:image:alt" content="Yamilka Batista" />
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Yamilka Batista | Emprendedora Digital" />
-  <meta name="twitter:description" content="Salud y Bienestar | Protocolo Detox HGW Panamá" />
+  <meta name="twitter:description" content="Especialista en Salud y Bienestar • Protocolo Detox HGW Panamá" />
+  <meta name="twitter:image" content="https://lh3.googleusercontent.com/d/1KeOPcyuhctKp1qJsNsfw-nlUuXzyU_hf" />
+  <meta name="twitter:image:alt" content="Yamilka Batista" />
 
   <!-- Fonts & Libraries -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -981,6 +1000,16 @@
         </button>
       </div>
 
+      <!-- User Card Preview Header -->
+      <div class="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800/80 rounded-2xl border border-slate-200/80 dark:border-slate-700">
+        <img id="modal-share-avatar" src="https://lh3.googleusercontent.com/d/1KeOPcyuhctKp1qJsNsfw-nlUuXzyU_hf" alt="Yamilka Batista" class="w-12 h-12 rounded-full object-cover border-2 border-emerald-500 shadow-xs shrink-0" />
+        <div class="min-w-0 flex-1">
+          <h4 id="modal-share-name" class="text-sm font-bold text-slate-900 dark:text-white truncate">Yamilka Batista</h4>
+          <p id="modal-share-title" class="text-xs text-emerald-600 dark:text-emerald-400 font-medium truncate">Emprendedora Digital • HGW Panamá</p>
+          <p class="text-[11px] text-slate-500 truncate">Salud & Bienestar • Protocolo Detox</p>
+        </div>
+      </div>
+
       <!-- QR Box inside modal -->
       <div class="flex flex-col items-center justify-center p-4 bg-slate-50 dark:bg-slate-800/60 rounded-2xl border border-slate-100 dark:border-slate-800">
         <div id="modal-qr-canvas" class="p-2.5 bg-white rounded-xl shadow-xs"></div>
@@ -1368,6 +1397,13 @@
       document.getElementById('card-slogan').innerText = p.slogan;
       document.getElementById('card-location-text').innerText = p.location;
       document.getElementById('card-bio-text').innerText = p.bio;
+
+      const shareAv = document.getElementById('modal-share-avatar');
+      if (shareAv) shareAv.src = p.avatar;
+      const shareName = document.getElementById('modal-share-name');
+      if (shareName) shareName.innerText = p.name;
+      const shareTitle = document.getElementById('modal-share-title');
+      if (shareTitle) shareTitle.innerText = `${p.title} • ${p.company}`;
 
       // Avatar Styling Shape
       const avWrapper = document.getElementById('card-avatar-wrapper');
