@@ -97,12 +97,21 @@
       --primary-hover: #047857;
       --primary-light: #d1fae5;
       --card-bg: #ffffff;
-      --card-text: #1e293b;
+      --card-text: #000000;
       font-family: 'Montserrat', sans-serif;
     }
-    body {
+    html, body {
       font-family: 'Montserrat', sans-serif;
       font-size: 18px;
+      color: #000000;
+    }
+    p, .card-p, .paragraph-text, #card-slogan, #card-bio-text {
+      font-size: 18px !important;
+      line-height: 1.65 !important;
+      color: #000000 !important;
+    }
+    .dark p, .dark .card-p, .dark .paragraph-text, .dark #card-slogan, .dark #card-bio-text {
+      color: #ffffff !important;
     }
     .custom-scrollbar::-webkit-scrollbar {
       width: 6px;
@@ -654,145 +663,145 @@
     </div>
 
     <!-- VIEW CONTAINER: PUBLIC DIGITAL CARD (STANDALONE) -->
-    <div id="public-card-container" class="w-full max-w-md mx-auto transition-all duration-300">
+    <div id="public-card-container" class="w-full max-w-lg sm:max-w-xl mx-auto transition-all duration-300">
       <!-- Public Card Component Wrapper -->
-      <div id="card-root" class="relative rounded-3xl shadow-xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 transition-colors">
+      <div id="card-root" class="relative rounded-3xl shadow-xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 transition-colors text-[18px] text-black dark:text-white">
         
         <!-- COVER IMAGE & TOP BADGES -->
-        <div class="relative h-44 sm:h-48 w-full bg-slate-800 overflow-hidden">
+        <div class="relative h-48 sm:h-56 w-full bg-slate-800 overflow-hidden">
           <img id="card-cover-img" src="" alt="Portada" class="w-full h-full object-cover no-drag transition-transform duration-700 hover:scale-105" />
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
           
           <!-- Top Right Controls: Share & QR -->
           <div class="absolute top-3 right-3 flex items-center gap-2 z-10">
-            <button onclick="openShareModal()" class="p-2 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-md text-white transition shadow-sm" title="Compartir Tarjeta">
+            <button onclick="openShareModal()" class="p-2.5 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-md text-white transition shadow-sm" title="Compartir Tarjeta">
               <i data-lucide="share-2" class="w-4 h-4"></i>
             </button>
-            <button onclick="openQrModal()" class="p-2 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-md text-white transition shadow-sm" title="Ver Código QR">
+            <button onclick="openQrModal()" class="p-2.5 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-md text-white transition shadow-sm" title="Ver Código QR">
               <i data-lucide="qr-code" class="w-4 h-4"></i>
             </button>
           </div>
 
           <!-- Brand / Verified Pill -->
-          <div class="absolute top-3 left-3 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-md text-white text-[11px] font-medium border border-white/10">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <div class="absolute top-3 left-3 z-10 flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 backdrop-blur-md text-white text-xs font-medium border border-white/10">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
             <span id="card-badge-status">Disponible</span>
           </div>
         </div>
 
         <!-- PROFILE HEADER (AVATAR & INFO) -->
-        <div class="px-5 pt-0 pb-4 relative">
+        <div class="px-6 pt-0 pb-5 relative">
           
           <!-- Profile Avatar Floating -->
-          <div class="relative -mt-16 sm:-mt-20 mb-3 flex items-end justify-between">
+          <div class="relative -mt-16 sm:-mt-20 mb-3.5 flex items-end justify-between">
             <div class="relative">
               <div id="card-avatar-wrapper" class="w-28 h-28 sm:w-32 sm:h-32 rounded-full border-4 border-white dark:border-slate-900 shadow-xl overflow-hidden bg-slate-200 dark:bg-slate-800">
                 <img id="card-avatar-img" src="" alt="Foto de Perfil" class="w-full h-full object-cover no-drag" />
               </div>
-              <div class="absolute bottom-1 right-1 p-1 bg-emerald-500 text-white rounded-full ring-4 ring-white dark:ring-slate-900 shadow-sm" title="Verificado HGW">
+              <div class="absolute bottom-1 right-1 p-1.5 bg-emerald-500 text-white rounded-full ring-4 ring-white dark:ring-slate-900 shadow-sm" title="Verificado HGW">
                 <i data-lucide="check" class="w-3.5 h-3.5 stroke-[3]"></i>
               </div>
             </div>
 
             <!-- Quick Save Contact Button (.vcf) -->
-            <button onclick="downloadVCard()" class="mb-1 flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-emerald-600 dark:hover:bg-emerald-700 text-white text-xs font-bold shadow-md transition transform active:scale-95">
-              <i data-lucide="user-plus" class="w-3.5 h-3.5"></i>
+            <button onclick="downloadVCard()" class="mb-1 flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-emerald-600 dark:hover:bg-emerald-700 text-white text-sm font-bold shadow-md transition transform active:scale-95">
+              <i data-lucide="user-plus" class="w-4 h-4"></i>
               <span>Guardar Contacto</span>
             </button>
           </div>
 
           <!-- Name & Title -->
-          <div class="space-y-1 text-left">
+          <div class="space-y-1.5 text-left">
             <div class="flex items-center gap-2 flex-wrap">
-              <h1 id="card-name" class="text-xl sm:text-2xl font-heading font-extrabold text-slate-900 dark:text-white tracking-tight">Yamilka Batista</h1>
-              <span id="card-company-tag" class="px-2 py-0.5 text-[11px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 rounded-md">HGW Panamá</span>
+              <h1 id="card-name" class="text-2xl sm:text-3xl font-heading font-extrabold text-black dark:text-white tracking-tight">Yamilka Batista</h1>
+              <span id="card-company-tag" class="px-2.5 py-0.5 text-xs font-bold bg-emerald-100 text-emerald-900 dark:bg-emerald-950 dark:text-emerald-300 rounded-md">HGW Panamá</span>
             </div>
-            <p id="card-title" class="text-sm font-semibold text-emerald-700 dark:text-emerald-400">Emprendedora Digital</p>
-            <p id="card-slogan" class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">Especialista en Salud y Bienestar • Protocolo de Limpieza de Colon Natural & Detox</p>
-            <div class="flex items-center gap-1.5 text-xs text-slate-500 pt-0.5">
-              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-emerald-600"></i>
+            <p id="card-title" class="text-base font-bold text-emerald-700 dark:text-emerald-400">Emprendedora Digital</p>
+            <p id="card-slogan" class="text-[18px] text-black dark:text-white font-medium leading-relaxed">Especialista en Salud y Bienestar • Protocolo de Limpieza de Colon Natural & Detox</p>
+            <div class="flex items-center gap-1.5 text-sm text-slate-700 dark:text-slate-300 pt-0.5">
+              <i data-lucide="map-pin" class="w-4 h-4 text-emerald-600"></i>
               <span id="card-location-text">Santiago de Veraguas, Panamá</span>
             </div>
           </div>
 
           <!-- PRIMARY QUICK ACTION BUTTONS -->
-          <div class="grid grid-cols-3 gap-2 mt-4">
-            <a id="btn-action-whatsapp" href="#" target="_blank" onclick="trackEvent('WhatsAppClick')" class="flex flex-col items-center justify-center p-2.5 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-sm transition active:scale-95">
+          <div class="grid grid-cols-3 gap-2.5 mt-5">
+            <a id="btn-action-whatsapp" href="#" target="_blank" onclick="trackEvent('WhatsAppClick')" class="flex flex-col items-center justify-center p-3 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold shadow-sm transition active:scale-95">
               <i data-lucide="message-circle" class="w-5 h-5 mb-1"></i>
               <span>WhatsApp</span>
             </a>
-            <a id="btn-action-call" href="#" onclick="trackEvent('CallClick')" class="flex flex-col items-center justify-center p-2.5 rounded-2xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-bold transition active:scale-95">
-              <i data-lucide="phone" class="w-5 h-5 mb-1 text-slate-600 dark:text-slate-300"></i>
+            <a id="btn-action-call" href="#" onclick="trackEvent('CallClick')" class="flex flex-col items-center justify-center p-3 rounded-2xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-black dark:text-slate-100 text-sm font-bold transition active:scale-95">
+              <i data-lucide="phone" class="w-5 h-5 mb-1 text-slate-700 dark:text-slate-300"></i>
               <span>Llamar</span>
             </a>
-            <a id="btn-action-email" href="#" onclick="trackEvent('EmailClick')" class="flex flex-col items-center justify-center p-2.5 rounded-2xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-bold transition active:scale-95">
-              <i data-lucide="mail" class="w-5 h-5 mb-1 text-slate-600 dark:text-slate-300"></i>
+            <a id="btn-action-email" href="#" onclick="trackEvent('EmailClick')" class="flex flex-col items-center justify-center p-3 rounded-2xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-black dark:text-slate-100 text-sm font-bold transition active:scale-95">
+              <i data-lucide="mail" class="w-5 h-5 mb-1 text-slate-700 dark:text-slate-300"></i>
               <span>Correo</span>
             </a>
           </div>
 
           <!-- SOCIAL MEDIA ICONS BAR -->
-          <div id="card-socials-bar" class="flex items-center justify-center gap-3 pt-4 border-b border-slate-100 dark:border-slate-800 pb-4">
+          <div id="card-socials-bar" class="flex items-center justify-center gap-3 pt-5 border-b border-slate-100 dark:border-slate-800 pb-5">
             <!-- Dynamic Social icons rendered in JS -->
           </div>
 
         </div>
 
         <!-- MAIN CARD SECTIONS / TABS -->
-        <div class="px-5 pb-6 space-y-6">
+        <div class="px-6 pb-8 space-y-7">
           
           <!-- SECTION: ABOUT / BIOGRAPHY -->
-          <section id="sec-about" class="space-y-2">
+          <section id="sec-about" class="space-y-2.5">
             <div class="flex items-center gap-2">
-              <div class="w-1.5 h-4 rounded-full bg-emerald-600"></div>
-              <h2 class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">Sobre Mi Enfoque</h2>
+              <div class="w-2 h-5 rounded-full bg-emerald-600"></div>
+              <h2 class="text-sm font-bold text-black dark:text-slate-200 uppercase tracking-wider">Sobre Mi Enfoque</h2>
             </div>
-            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-300 leading-relaxed space-y-2">
-              <p id="card-bio-text"></p>
-              <div class="pt-2 border-t border-slate-200/60 dark:border-slate-700/60 grid grid-cols-2 gap-2 text-[11px]">
+            <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-800 text-[18px] text-black dark:text-white leading-relaxed space-y-3">
+              <p id="card-bio-text" class="text-[18px] text-black dark:text-white leading-relaxed"></p>
+              <div class="pt-3 border-t border-slate-200/80 dark:border-slate-700/60 grid grid-cols-2 gap-3 text-sm">
                 <div>
-                  <span class="text-slate-400 block font-medium">Nicho & Especialidad</span>
-                  <span class="font-semibold text-slate-800 dark:text-slate-200">Estreñimiento & Detox</span>
+                  <span class="text-slate-500 dark:text-slate-400 block font-medium">Nicho & Especialidad</span>
+                  <span class="font-bold text-black dark:text-slate-200">Estreñimiento & Detox</span>
                 </div>
                 <div>
-                  <span class="text-slate-400 block font-medium">Tratamientos Naturales</span>
-                  <span class="font-semibold text-slate-800 dark:text-slate-200">Rango $40 - $70 USD</span>
+                  <span class="text-slate-500 dark:text-slate-400 block font-medium">Tratamientos Naturales</span>
+                  <span class="font-bold text-black dark:text-slate-200">Rango $40 - $70 USD</span>
                 </div>
               </div>
             </div>
           </section>
 
           <!-- SECTION: FEATURED PRODUCTS & PROTOCOLS -->
-          <section id="sec-products" class="space-y-3">
+          <section id="sec-products" class="space-y-3.5">
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-2">
-                <div class="w-1.5 h-4 rounded-full bg-emerald-600"></div>
-                <h2 class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">Productos & Protocolo Detox</h2>
+                <div class="w-2 h-5 rounded-full bg-emerald-600"></div>
+                <h2 class="text-sm font-bold text-black dark:text-slate-200 uppercase tracking-wider">Productos & Protocolo Detox</h2>
               </div>
-              <span class="text-[10px] font-semibold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-full">100% Funcionales HGW</span>
+              <span class="text-xs font-semibold text-emerald-800 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full">100% Funcionales HGW</span>
             </div>
 
             <!-- Products List Container -->
-            <div id="card-products-container" class="space-y-3">
+            <div id="card-products-container" class="space-y-3.5">
               <!-- Dynamically populated in JS -->
             </div>
           </section>
 
           <!-- SECTION: SHIPPING COVERAGE -->
-          <section id="sec-shipping" class="space-y-2">
+          <section id="sec-shipping" class="space-y-2.5">
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-2">
-                <div class="w-1.5 h-4 rounded-full bg-emerald-600"></div>
-                <h2 class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">Envíos a Todo Panamá</h2>
+                <div class="w-2 h-5 rounded-full bg-emerald-600"></div>
+                <h2 class="text-sm font-bold text-black dark:text-slate-200 uppercase tracking-wider">Envíos a Todo Panamá</h2>
               </div>
-              <span class="text-[10px] font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-950/80 px-2 py-0.5 rounded-full border border-emerald-300 dark:border-emerald-800 flex items-center gap-1">
-                <i data-lucide="truck" class="w-3 h-3"></i> B/. 5.00 SERVIENTREGA
+              <span class="text-xs font-bold text-emerald-800 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-950/80 px-2.5 py-1 rounded-full border border-emerald-300 dark:border-emerald-800 flex items-center gap-1">
+                <i data-lucide="truck" class="w-3.5 h-3.5"></i> B/. 5.00 SERVIENTREGA
               </span>
             </div>
-            <div class="p-3.5 rounded-2xl bg-gradient-to-br from-slate-50 to-emerald-50/30 dark:from-slate-800/60 dark:to-emerald-950/20 border border-slate-100 dark:border-slate-800 space-y-2.5">
-              <div class="flex items-center gap-2 text-xs text-slate-700 dark:text-slate-300">
-                <i data-lucide="package-check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                <span class="font-medium">Costo de envío: <strong class="text-slate-900 dark:text-white font-bold">B/. 5.00 por SERVIENTREGA</strong> (con guía de rastreo)</span>
+            <div class="p-4 rounded-2xl bg-gradient-to-br from-slate-50 to-emerald-50/30 dark:from-slate-800/60 dark:to-emerald-950/20 border border-slate-200/80 dark:border-slate-800 space-y-3">
+              <div class="flex items-center gap-2 text-[18px] text-black dark:text-white">
+                <i data-lucide="package-check" class="w-5 h-5 text-emerald-600 shrink-0"></i>
+                <p class="font-medium text-[18px] text-black dark:text-white">Costo de envío: <strong class="text-black dark:text-white font-bold">B/. 5.00 por SERVIENTREGA</strong> (con guía de rastreo oficial)</p>
               </div>
               <div id="card-provinces-badges" class="flex flex-wrap gap-1.5 pt-1">
                 <!-- Badges populated in JS -->
@@ -801,34 +810,32 @@
           </section>
 
           <!-- SECTION: PAGOS POR YAPPY -->
-          <section id="sec-payment" class="space-y-2">
+          <section id="sec-payment" class="space-y-2.5">
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-2">
-                <div class="w-1.5 h-4 rounded-full bg-sky-500"></div>
-                <h2 class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">Pagos por Yappy</h2>
+                <div class="w-2 h-5 rounded-full bg-sky-500"></div>
+                <h2 class="text-sm font-bold text-black dark:text-slate-200 uppercase tracking-wider">Pagos por Yappy</h2>
               </div>
-              <span class="text-[10px] font-bold text-sky-700 dark:text-sky-300 bg-sky-50 dark:bg-sky-950/80 px-2 py-0.5 rounded-full border border-sky-200 dark:border-sky-800">
+              <span class="text-xs font-bold text-sky-800 dark:text-sky-300 bg-sky-50 dark:bg-sky-950/80 px-2.5 py-1 rounded-full border border-sky-200 dark:border-sky-800">
                 Banco General
               </span>
             </div>
-            <div class="p-3.5 rounded-2xl bg-gradient-to-br from-sky-50/80 to-blue-50/40 dark:from-slate-800/80 dark:to-sky-950/30 border border-sky-200/70 dark:border-sky-900/60 flex items-center gap-3.5">
-              <div onclick="openLightbox('https://lh3.googleusercontent.com/d/17XluHl2ZTjqw5Uu2VVdLZuwgMQkX5tzc', 'Código QR Pagos por Yappy - Yamilka Batista')" class="w-20 h-20 rounded-xl overflow-hidden bg-white p-1 shadow-md border border-sky-100 dark:border-slate-700 cursor-pointer shrink-0 group relative" title="Toca para ampliar el QR">
+            <div class="p-4 rounded-2xl bg-gradient-to-br from-sky-50/80 to-blue-50/40 dark:from-slate-800/80 dark:to-sky-950/30 border border-sky-200/80 dark:border-sky-900/60 flex items-center gap-4">
+              <div onclick="openLightbox('https://lh3.googleusercontent.com/d/17XluHl2ZTjqw5Uu2VVdLZuwgMQkX5tzc', 'Código QR Pagos por Yappy - Yamilka Batista')" class="w-24 h-24 rounded-2xl overflow-hidden bg-white p-1.5 shadow-md border border-sky-100 dark:border-slate-700 cursor-pointer shrink-0 group relative" title="Toca para ampliar el QR">
                 <img src="https://lh3.googleusercontent.com/d/17XluHl2ZTjqw5Uu2VVdLZuwgMQkX5tzc" alt="QR Yappy" class="w-full h-full object-contain group-hover:scale-105 transition-transform" />
-                <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity rounded-xl">
-                  <i data-lucide="zoom-in" class="w-4 h-4 text-white"></i>
+                <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity rounded-2xl">
+                  <i data-lucide="zoom-in" class="w-5 h-5 text-white"></i>
                 </div>
               </div>
-              <div class="flex-1 min-w-0 space-y-1">
-                <div class="flex items-center gap-1.5">
-                  <span class="font-extrabold text-xs text-sky-900 dark:text-sky-200">Pagos al Instante con Yappy</span>
-                </div>
-                <p class="text-[11px] text-slate-600 dark:text-slate-400">Escanea el código QR o envía directamente a mi número de contacto.</p>
-                <div class="pt-1 flex items-center gap-2">
-                  <button onclick="openLightbox('https://lh3.googleusercontent.com/d/17XluHl2ZTjqw5Uu2VVdLZuwgMQkX5tzc', 'Código QR Pagos por Yappy - Yamilka Batista')" class="px-2.5 py-1 text-[10px] font-bold bg-sky-600 hover:bg-sky-700 text-white rounded-lg flex items-center gap-1 shadow-xs transition">
-                    <i data-lucide="qr-code" class="w-3 h-3"></i> Ver QR
+              <div class="flex-1 min-w-0 space-y-1.5">
+                <span class="font-extrabold text-sm text-sky-950 dark:text-sky-200 block">Pagos al Instante con Yappy</span>
+                <p class="text-[18px] text-black dark:text-white leading-relaxed">Escanea el código QR o envía directamente a mi número de contacto.</p>
+                <div class="pt-1 flex items-center gap-2 flex-wrap">
+                  <button onclick="openLightbox('https://lh3.googleusercontent.com/d/17XluHl2ZTjqw5Uu2VVdLZuwgMQkX5tzc', 'Código QR Pagos por Yappy - Yamilka Batista')" class="px-3 py-1.5 text-xs font-bold bg-sky-600 hover:bg-sky-700 text-white rounded-lg flex items-center gap-1 shadow-xs transition">
+                    <i data-lucide="qr-code" class="w-3.5 h-3.5"></i> Ver QR
                   </button>
-                  <a href="https://wa.me/50767603578?text=Hola%20Yamilka%2C%20te%20adjunto%20el%20comprobante%20de%20pago%20por%20Yappy" target="_blank" onclick="trackEvent('YappyProofClick')" class="px-2.5 py-1 text-[10px] font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded-lg flex items-center gap-1 hover:bg-slate-50 transition">
-                    <i data-lucide="send" class="w-3 h-3 text-emerald-600"></i> Enviar Comprobante
+                  <a href="https://wa.me/50767603578?text=Hola%20Yamilka%2C%20te%20adjunto%20el%20comprobante%20de%20pago%20por%20Yappy" target="_blank" onclick="trackEvent('YappyProofClick')" class="px-3 py-1.5 text-xs font-semibold bg-white dark:bg-slate-800 text-black dark:text-slate-200 border border-slate-200 dark:border-slate-700 rounded-lg flex items-center gap-1 hover:bg-slate-50 transition">
+                    <i data-lucide="send" class="w-3.5 h-3.5 text-emerald-600"></i> Enviar Comprobante
                   </a>
                 </div>
               </div>
@@ -836,104 +843,104 @@
           </section>
 
           <!-- SECTION: TESTIMONIALS & REVIEWS -->
-          <section id="sec-testimonials" class="space-y-3">
+          <section id="sec-testimonials" class="space-y-3.5">
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-2">
-                <div class="w-1.5 h-4 rounded-full bg-amber-500"></div>
-                <h2 class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">Testimonios de Clientes</h2>
+                <div class="w-2 h-5 rounded-full bg-amber-500"></div>
+                <h2 class="text-sm font-bold text-black dark:text-slate-200 uppercase tracking-wider">Testimonios de Clientes</h2>
               </div>
-              <div class="flex items-center gap-1 text-[11px] font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded-full border border-amber-200 dark:border-amber-800/80">
+              <div class="flex items-center gap-1.5 text-xs font-bold text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 px-3 py-1 rounded-full border border-amber-200 dark:border-amber-800/80">
                 <div class="flex items-center text-amber-500">
-                  <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                  <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
                 </div>
                 <span>5.0</span>
-                <span class="text-[9px] text-slate-400 font-normal">(Opiniones Reales)</span>
+                <span class="text-[11px] text-slate-500 font-normal">(Opiniones Reales)</span>
               </div>
             </div>
-            <div id="card-testimonials-container" class="space-y-2.5">
+            <div id="card-testimonials-container" class="space-y-3">
               <!-- Dynamically populated in JS -->
             </div>
           </section>
 
           <!-- SECTION: PHOTO GALLERY & RESULTS -->
-          <section id="sec-gallery" class="space-y-3">
+          <section id="sec-gallery" class="space-y-3.5">
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-2">
-                <div class="w-1.5 h-4 rounded-full bg-emerald-600"></div>
-                <h2 class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">Galería & Resultados</h2>
+                <div class="w-2 h-5 rounded-full bg-emerald-600"></div>
+                <h2 class="text-sm font-bold text-black dark:text-slate-200 uppercase tracking-wider">Galería & Resultados</h2>
               </div>
-              <span class="text-[10px] text-slate-400">Toca para ampliar</span>
+              <span class="text-xs text-slate-500 dark:text-slate-400">Toca para ampliar</span>
             </div>
-            <div id="card-gallery-grid" class="grid grid-cols-2 gap-2">
+            <div id="card-gallery-grid" class="grid grid-cols-2 gap-2.5">
               <!-- Dynamically populated in JS -->
             </div>
           </section>
 
           <!-- SECTION: VIDEOS -->
-          <section id="sec-videos" class="space-y-3">
+          <section id="sec-videos" class="space-y-3.5">
             <div class="flex items-center gap-2">
-              <div class="w-1.5 h-4 rounded-full bg-emerald-600"></div>
-              <h2 class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">Videos Informativos</h2>
+              <div class="w-2 h-5 rounded-full bg-emerald-600"></div>
+              <h2 class="text-sm font-bold text-black dark:text-slate-200 uppercase tracking-wider">Videos Informativos</h2>
             </div>
-            <div id="card-videos-container" class="space-y-2.5">
+            <div id="card-videos-container" class="space-y-3">
               <!-- Dynamically populated in JS -->
             </div>
           </section>
 
           <!-- SECTION: DOWNLOADABLE DOCUMENTS -->
-          <section id="sec-documents" class="space-y-3">
+          <section id="sec-documents" class="space-y-3.5">
             <div class="flex items-center gap-2">
-              <div class="w-1.5 h-4 rounded-full bg-emerald-600"></div>
-              <h2 class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">Guías & Catálogos</h2>
+              <div class="w-2 h-5 rounded-full bg-emerald-600"></div>
+              <h2 class="text-sm font-bold text-black dark:text-slate-200 uppercase tracking-wider">Guías & Catálogos</h2>
             </div>
-            <div id="card-docs-container" class="space-y-2">
+            <div id="card-docs-container" class="space-y-2.5">
               <!-- Dynamically populated in JS -->
             </div>
           </section>
 
           <!-- SECTION: FAQ (PREGUNTAS FRECUENTES) -->
-          <section id="sec-faq" class="space-y-3">
+          <section id="sec-faq" class="space-y-3.5">
             <div class="flex items-center gap-2">
-              <div class="w-1.5 h-4 rounded-full bg-emerald-600"></div>
-              <h2 class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">Preguntas Frecuentes</h2>
+              <div class="w-2 h-5 rounded-full bg-emerald-600"></div>
+              <h2 class="text-sm font-bold text-black dark:text-slate-200 uppercase tracking-wider">Preguntas Frecuentes</h2>
             </div>
-            <div id="card-faq-container" class="space-y-2">
+            <div id="card-faq-container" class="space-y-2.5">
               <!-- Dynamically populated in JS -->
             </div>
           </section>
 
           <!-- SECTION: BUSINESS HOURS & LOCATION -->
-          <section id="sec-location" class="space-y-3">
+          <section id="sec-location" class="space-y-3.5">
             <div class="flex items-center gap-2">
-              <div class="w-1.5 h-4 rounded-full bg-emerald-600"></div>
-              <h2 class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">Horario de Atención & Ubicación</h2>
+              <div class="w-2 h-5 rounded-full bg-emerald-600"></div>
+              <h2 class="text-sm font-bold text-black dark:text-slate-200 uppercase tracking-wider">Horario de Atención & Ubicación</h2>
             </div>
-            <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 space-y-2.5 text-xs">
-              <div class="flex items-center justify-between text-slate-700 dark:text-slate-300">
-                <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5 text-emerald-600"></i> Lunes a Sábado:</span>
-                <span class="font-semibold">8:00 AM - 7:00 PM</span>
+            <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-800 space-y-3 text-[18px]">
+              <div class="flex items-center justify-between text-black dark:text-white">
+                <span class="flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-emerald-600"></i> Lunes a Sábado:</span>
+                <span class="font-bold">8:00 AM - 7:00 PM</span>
               </div>
-              <div class="flex items-center justify-between text-slate-700 dark:text-slate-300">
-                <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5 text-emerald-600"></i> Domingo:</span>
-                <span class="font-semibold">Atención Digital / Consultas</span>
+              <div class="flex items-center justify-between text-black dark:text-white">
+                <span class="flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-emerald-600"></i> Domingo:</span>
+                <span class="font-bold">Atención Digital</span>
               </div>
-              <div class="pt-2 border-t border-slate-200/60 dark:border-slate-700/60 flex items-center justify-between">
-                <span class="text-slate-500">Santiago de Veraguas, Panamá</span>
-                <a href="https://maps.google.com/?q=Santiago+de+Veraguas+Panama" target="_blank" onclick="trackEvent('MapDirectionsClick')" class="text-emerald-700 dark:text-emerald-400 font-bold flex items-center gap-1 hover:underline">
-                  <i data-lucide="navigation" class="w-3.5 h-3.5"></i> Cómo Llegar
+              <div class="pt-3 border-t border-slate-200/80 dark:border-slate-700/60 flex items-center justify-between">
+                <span class="text-black dark:text-white">Santiago de Veraguas, Panamá</span>
+                <a href="https://maps.google.com/?q=Santiago+de+Veraguas+Panama" target="_blank" onclick="trackEvent('MapDirectionsClick')" class="text-emerald-700 dark:text-emerald-400 font-bold flex items-center gap-1 hover:underline text-sm">
+                  <i data-lucide="navigation" class="w-4 h-4"></i> Cómo Llegar
                 </a>
               </div>
             </div>
           </section>
 
           <!-- BOTTOM ACTION FOOTER -->
-          <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-2.5">
-            <button onclick="downloadVCard()" class="w-full py-3 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-emerald-600 dark:hover:bg-emerald-700 text-white text-xs font-bold shadow-md flex items-center justify-center gap-2 transition active:scale-98">
-              <i data-lucide="user-check" class="w-4 h-4"></i>
+          <div class="pt-5 border-t border-slate-200 dark:border-slate-800 flex flex-col gap-3">
+            <button onclick="downloadVCard()" class="w-full py-3.5 px-5 rounded-2xl bg-slate-900 hover:bg-slate-800 dark:bg-emerald-600 dark:hover:bg-emerald-700 text-white text-sm sm:text-base font-bold shadow-md flex items-center justify-center gap-2 transition active:scale-98">
+              <i data-lucide="user-check" class="w-5 h-5"></i>
               Guardar Contacto en mi Teléfono (.vcf)
             </button>
-            <button onclick="openShareModal()" class="w-full py-3 px-4 rounded-xl bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-950/50 dark:hover:bg-emerald-900/50 text-emerald-800 dark:text-emerald-300 text-xs font-bold border border-emerald-200 dark:border-emerald-800 flex items-center justify-center gap-2 transition">
-              <i data-lucide="share-2" class="w-4 h-4"></i>
+            <button onclick="openShareModal()" class="w-full py-3.5 px-5 rounded-2xl bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-950/50 dark:hover:bg-emerald-900/50 text-emerald-900 dark:text-emerald-300 text-sm sm:text-base font-bold border border-emerald-300 dark:border-emerald-800 flex items-center justify-center gap-2 transition">
+              <i data-lucide="share-2" class="w-5 h-5"></i>
               Compartir mi Tarjeta Digital
             </button>
           </div>
@@ -1431,29 +1438,29 @@
 
       appData.products.forEach(p => {
         const item = document.createElement('div');
-        item.className = "p-3.5 rounded-2xl bg-white dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 shadow-xs flex gap-3 items-center";
+        item.className = "p-4 rounded-2xl bg-white dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 shadow-xs flex flex-col sm:flex-row gap-3.5 items-start sm:items-center";
         
         const buyMsg = encodeURIComponent(`Hola Yamilka, deseo ordenar o consultar sobre: ${p.title} (B/. ${p.price.toFixed(2)})`);
 
         item.innerHTML = `
-          <div onclick="openLightbox('${p.image}', '${p.title}')" class="relative w-20 h-20 rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-700 shrink-0 cursor-pointer group" title="Ver foto">
+          <div onclick="openLightbox('${p.image}', '${p.title}')" class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-700 shrink-0 cursor-pointer group" title="Ver foto">
             <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover no-drag group-hover:scale-105 transition-transform" />
-            <span class="absolute top-1 left-1 px-1.5 py-0.5 text-[9px] font-bold bg-emerald-600 text-white rounded-md shadow-2xs">-${p.discount}%</span>
+            <span class="absolute top-1.5 left-1.5 px-2 py-0.5 text-[10px] font-bold bg-emerald-600 text-white rounded-md shadow-2xs">-${p.discount}%</span>
             <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
-              <i data-lucide="zoom-in" class="w-3.5 h-3.5 text-white"></i>
+              <i data-lucide="zoom-in" class="w-4 h-4 text-white"></i>
             </div>
           </div>
-          <div class="flex-1 min-w-0 space-y-1">
-            <span class="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 block truncate">${p.tag}</span>
-            <h3 class="text-xs font-bold text-slate-900 dark:text-white truncate">${p.title}</h3>
-            <p class="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-2">${p.desc}</p>
-            <div class="flex items-center justify-between pt-1">
-              <div class="flex items-baseline gap-1.5">
-                <span class="text-xs font-extrabold text-slate-900 dark:text-white">B/. ${p.price.toFixed(2)}</span>
-                <span class="text-[10px] text-slate-400 line-through">B/. ${p.originalPrice.toFixed(2)}</span>
+          <div class="flex-1 min-w-0 space-y-1.5">
+            <span class="text-xs font-bold text-emerald-700 dark:text-emerald-400 block">${p.tag}</span>
+            <h3 class="text-base font-bold text-black dark:text-white leading-snug">${p.title}</h3>
+            <p class="text-[18px] text-black dark:text-white leading-relaxed">${p.desc}</p>
+            <div class="flex items-center justify-between pt-1.5 flex-wrap gap-2">
+              <div class="flex items-baseline gap-2">
+                <span class="text-base font-extrabold text-black dark:text-white">B/. ${p.price.toFixed(2)}</span>
+                <span class="text-xs text-slate-400 line-through">B/. ${p.originalPrice.toFixed(2)}</span>
               </div>
-              <a href="https://wa.me/${cleanPhone}?text=${buyMsg}" target="_blank" onclick="trackEvent('ProductOrderClick')" class="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] font-bold rounded-lg flex items-center gap-1 shadow-xs transition active:scale-95">
-                <i data-lucide="shopping-cart" class="w-3 h-3"></i> Pedir
+              <a href="https://wa.me/${cleanPhone}?text=${buyMsg}" target="_blank" onclick="trackEvent('ProductOrderClick')" class="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl flex items-center gap-1.5 shadow-xs transition active:scale-95">
+                <i data-lucide="shopping-cart" class="w-3.5 h-3.5"></i> Ordenar
               </a>
             </div>
           </div>
@@ -1470,22 +1477,22 @@
       const list = appData.testimonials || [];
 
       if (list.length === 0) {
-        container.innerHTML = `<div class="p-3 text-center text-xs text-slate-400">No hay testimonios agregados aún.</div>`;
+        container.innerHTML = `<div class="p-4 text-center text-sm text-slate-400">No hay testimonios agregados aún.</div>`;
         return;
       }
 
       list.forEach(t => {
         const item = document.createElement('div');
-        item.className = "p-3.5 rounded-2xl bg-white dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 shadow-xs space-y-2.5";
+        item.className = "p-4 rounded-2xl bg-white dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 shadow-xs space-y-3";
         
         // Render Star SVGs
         let starsHtml = '';
         const rating = Math.max(1, Math.min(5, t.rating || 5));
         for (let i = 1; i <= 5; i++) {
           if (i <= rating) {
-            starsHtml += `<i data-lucide="star" class="w-3 h-3 fill-amber-400 text-amber-400"></i>`;
+            starsHtml += `<i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400 text-amber-400"></i>`;
           } else {
-            starsHtml += `<i data-lucide="star" class="w-3 h-3 text-slate-300 dark:text-slate-600"></i>`;
+            starsHtml += `<i data-lucide="star" class="w-3.5 h-3.5 text-slate-300 dark:text-slate-600"></i>`;
           }
         }
 
@@ -1496,20 +1503,20 @@
         let photoHtml = '';
         if (t.image && t.image.trim()) {
           photoHtml = `
-            <div onclick="openLightbox('${t.image}', 'Testimonio / Resultados: ${t.name}')" class="mt-2 p-1.5 bg-slate-50 dark:bg-slate-700/60 rounded-xl border border-slate-100 dark:border-slate-700 flex items-center gap-2.5 cursor-pointer group hover:bg-slate-100 transition" title="Toca para ampliar foto del testimonio">
-              <div class="w-14 h-14 rounded-lg overflow-hidden shrink-0 bg-slate-200 dark:bg-slate-600 relative">
+            <div onclick="openLightbox('${t.image}', 'Testimonio / Resultados: ${t.name}')" class="mt-2.5 p-2 bg-slate-50 dark:bg-slate-700/60 rounded-xl border border-slate-200/80 dark:border-slate-700 flex items-center gap-3 cursor-pointer group hover:bg-slate-100 transition" title="Toca para ampliar foto del testimonio">
+              <div class="w-16 h-16 rounded-xl overflow-hidden shrink-0 bg-slate-200 dark:bg-slate-600 relative">
                 <img src="${t.image}" alt="${t.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform" />
                 <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
-                  <i data-lucide="zoom-in" class="w-3 h-3 text-white"></i>
+                  <i data-lucide="zoom-in" class="w-4 h-4 text-white"></i>
                 </div>
               </div>
               <div class="flex-1 min-w-0">
-                <span class="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
-                  <i data-lucide="sparkles" class="w-3 h-3"></i> Foto de Resultado Real
+                <span class="text-xs font-bold text-emerald-700 dark:text-emerald-400 flex items-center gap-1">
+                  <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Foto de Resultado Real
                 </span>
-                <span class="text-[10px] text-slate-500 dark:text-slate-400 block truncate">Toca aquí para ver antes y después</span>
+                <span class="text-xs text-slate-600 dark:text-slate-400 block truncate">Toca aquí para ver antes y después</span>
               </div>
-              <span class="px-2 py-1 bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 text-[10px] font-bold rounded-lg border border-emerald-200 dark:border-emerald-800">
+              <span class="px-2.5 py-1.5 bg-emerald-50 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 text-xs font-bold rounded-lg border border-emerald-200 dark:border-emerald-800">
                 Ver
               </span>
             </div>
@@ -1518,25 +1525,25 @@
 
         item.innerHTML = `
           <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2 min-w-0">
-              <div class="w-7 h-7 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-bold text-[10px] flex items-center justify-center shrink-0 border border-emerald-200 dark:border-emerald-800">
+            <div class="flex items-center gap-2.5 min-w-0">
+              <div class="w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-900 dark:text-emerald-300 font-bold text-xs flex items-center justify-center shrink-0 border border-emerald-200 dark:border-emerald-800">
                 ${initials}
               </div>
               <div class="min-w-0">
                 <div class="flex items-center gap-1.5">
-                  <h3 class="text-xs font-bold text-slate-900 dark:text-white truncate">${t.name}</h3>
-                  <span class="inline-flex items-center gap-0.5 text-[9px] font-semibold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/80 px-1.5 py-0.2 rounded border border-emerald-200/60 dark:border-emerald-800/60">
-                    <i data-lucide="check-check" class="w-2.5 h-2.5"></i> Verificado
+                  <h3 class="text-sm font-bold text-black dark:text-white truncate">${t.name}</h3>
+                  <span class="inline-flex items-center gap-0.5 text-[10px] font-semibold text-emerald-800 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/80 px-1.5 py-0.5 rounded border border-emerald-200/60 dark:border-emerald-800/60">
+                    <i data-lucide="check-check" class="w-3 h-3"></i> Verificado
                   </span>
                 </div>
-                <span class="text-[10px] text-slate-500 dark:text-slate-400 block truncate">${t.role || 'Cliente'} • ${t.date || 'Reciente'}</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 block truncate">${t.role || 'Cliente'} • ${t.date || 'Reciente'}</span>
               </div>
             </div>
-            <div class="flex items-center gap-0.5 shrink-0 bg-amber-50 dark:bg-amber-950/40 px-1.5 py-0.5 rounded-md border border-amber-200/50 dark:border-amber-800/50">
+            <div class="flex items-center gap-0.5 shrink-0 bg-amber-50 dark:bg-amber-950/40 px-2 py-1 rounded-md border border-amber-200/50 dark:border-amber-800/50">
               ${starsHtml}
             </div>
           </div>
-          <p class="text-xs text-slate-700 dark:text-slate-300 italic leading-relaxed">
+          <p class="text-[18px] text-black dark:text-white italic leading-relaxed">
             "${t.comment}"
           </p>
           ${photoHtml}
@@ -1554,8 +1561,8 @@
       list.forEach(prov => {
         if (prov) {
           const badge = document.createElement('span');
-          badge.className = "px-2 py-0.5 text-[10px] font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-md border border-slate-200 dark:border-slate-700 shadow-2xs flex items-center gap-1";
-          badge.innerHTML = `<i data-lucide="truck" class="w-2.5 h-2.5 text-emerald-600"></i> ${prov}`;
+          badge.className = "px-2.5 py-1 text-xs font-semibold bg-white dark:bg-slate-800 text-black dark:text-slate-200 rounded-lg border border-slate-200 dark:border-slate-700 shadow-2xs flex items-center gap-1";
+          badge.innerHTML = `<i data-lucide="truck" class="w-3 h-3 text-emerald-600"></i> ${prov}`;
           container.appendChild(badge);
         }
       });
@@ -1570,11 +1577,11 @@
       appData.gallery.forEach(img => {
         const div = document.createElement('div');
         div.onclick = () => openLightbox(img.url, img.title);
-        div.className = `relative aspect-4/3 rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 cursor-pointer group shadow-2xs ${watermark}`;
+        div.className = `relative aspect-4/3 rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-800 cursor-pointer group shadow-2xs ${watermark}`;
         div.innerHTML = `
           <img src="${img.url}" alt="${img.title}" class="w-full h-full object-cover no-drag transition-transform duration-500 group-hover:scale-110" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-2">
-            <span class="text-[10px] text-white font-medium truncate">${img.title}</span>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
+            <span class="text-xs text-white font-semibold truncate">${img.title}</span>
           </div>
         `;
         container.appendChild(div);
@@ -1588,14 +1595,14 @@
 
       appData.videos.forEach(v => {
         const item = document.createElement('div');
-        item.className = "p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 flex items-center justify-between gap-3";
+        item.className = "p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between gap-3";
         item.innerHTML = `
-          <div class="min-w-0">
-            <h3 class="text-xs font-bold text-slate-900 dark:text-white truncate">${v.title}</h3>
-            <p class="text-[11px] text-slate-500 dark:text-slate-400 truncate">${v.desc}</p>
+          <div class="min-w-0 space-y-1">
+            <h3 class="text-sm sm:text-base font-bold text-black dark:text-white truncate">${v.title}</h3>
+            <p class="text-[18px] text-black dark:text-white leading-relaxed truncate">${v.desc}</p>
           </div>
-          <button onclick="openVideoPlayer('${v.embedUrl}')" class="p-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shrink-0 flex items-center gap-1 shadow-xs">
-            <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i> Ver
+          <button onclick="openVideoPlayer('${v.embedUrl}')" class="p-2.5 px-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shrink-0 flex items-center gap-1.5 shadow-xs transition">
+            <i data-lucide="play" class="w-4 h-4 fill-current"></i> Ver
           </button>
         `;
         container.appendChild(item);
@@ -1609,19 +1616,19 @@
 
       appData.documents.forEach(doc => {
         const item = document.createElement('div');
-        item.className = "p-3 rounded-2xl bg-white dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 flex items-center justify-between gap-2 shadow-2xs";
+        item.className = "p-4 rounded-2xl bg-white dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 flex items-center justify-between gap-3 shadow-2xs";
         item.innerHTML = `
-          <div class="flex items-center gap-2.5 min-w-0">
-            <div class="w-8 h-8 rounded-lg bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-400 flex items-center justify-center font-bold text-xs shrink-0">
+          <div class="flex items-center gap-3 min-w-0">
+            <div class="w-10 h-10 rounded-xl bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-400 flex items-center justify-center font-bold text-xs shrink-0">
               PDF
             </div>
             <div class="truncate">
-              <h3 class="text-xs font-bold text-slate-900 dark:text-white truncate">${doc.title}</h3>
-              <span class="text-[10px] text-slate-400">${doc.size || 'PDF'} • Guía Digital HGW</span>
+              <h3 class="text-sm sm:text-base font-bold text-black dark:text-white truncate">${doc.title}</h3>
+              <p class="text-[18px] text-black dark:text-white leading-relaxed truncate">${doc.size || 'PDF'} • Guía Oficial HGW</p>
             </div>
           </div>
-          <a href="${doc.url}" target="_blank" rel="noopener noreferrer" onclick="trackEvent('DocumentDownload', { title: '${doc.title}' })" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold flex items-center gap-1.5 shadow-2xs shrink-0 transition" title="Abrir Guía PDF">
-            <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+          <a href="${doc.url}" target="_blank" rel="noopener noreferrer" onclick="trackEvent('DocumentDownload', { title: '${doc.title}' })" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-2xs shrink-0 transition" title="Abrir Guía PDF">
+            <i data-lucide="file-text" class="w-4 h-4"></i>
             <span>Ver PDF</span>
           </a>
         `;
@@ -1636,13 +1643,13 @@
 
       appData.faq.forEach((f, idx) => {
         const item = document.createElement('details');
-        item.className = "p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800 text-xs group cursor-pointer";
+        item.className = "p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-800 group cursor-pointer";
         item.innerHTML = `
-          <summary class="font-bold text-slate-800 dark:text-slate-200 flex items-center justify-between list-none">
+          <summary class="font-bold text-sm sm:text-base text-black dark:text-slate-200 flex items-center justify-between list-none">
             <span>${f.q}</span>
-            <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-slate-400 group-open:rotate-180 transition-transform"></i>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-500 group-open:rotate-180 transition-transform"></i>
           </summary>
-          <p class="pt-2 text-[11px] text-slate-600 dark:text-slate-400 leading-relaxed">${f.a}</p>
+          <p class="pt-2.5 text-[18px] text-black dark:text-white leading-relaxed">${f.a}</p>
         `;
         container.appendChild(item);
       });
