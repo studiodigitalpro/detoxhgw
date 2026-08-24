@@ -1158,8 +1158,14 @@
         {
           id: "v1",
           title: "Protocolo Detox y Limpieza de Colon HGW",
-          desc: "Video oficial: cómo realizar tu protocolo de desintoxicación",
-          embedUrl: "https://www.youtube-nocookie.com/embed/FGoPIZ4_eGE"
+          desc: "Explicación detallada de cómo realizar tu protocolo de desintoxicación y bienestar",
+          embedUrl: "https://www.youtube-nocookie.com/embed/kG5CGMMxSAw"
+        },
+        {
+          id: "v2",
+          title: "Toma Conciencia: Salud y Limpieza de Colon",
+          desc: "Aprende por qué la salud intestinal y la desintoxicación son clave para tu organismo",
+          embedUrl: "https://www.youtube-nocookie.com/embed/xwwH-hZz2dY"
         }
       ],
       documents: [
@@ -1595,11 +1601,16 @@
 
       appData.videos.forEach(v => {
         const item = document.createElement('div');
-        item.className = "p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between gap-3";
+        item.className = "p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between gap-3 hover:border-emerald-300 dark:hover:border-emerald-700/60 transition";
         item.innerHTML = `
-          <div class="min-w-0 space-y-1">
-            <h3 class="text-sm sm:text-base font-bold text-black dark:text-white truncate">${v.title}</h3>
-            <p class="text-[14.5px] text-black dark:text-white leading-relaxed truncate">${v.desc}</p>
+          <div class="flex items-center gap-3 min-w-0">
+            <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 flex items-center justify-center shrink-0">
+              <i data-lucide="video" class="w-5 h-5"></i>
+            </div>
+            <div class="min-w-0 space-y-0.5">
+              <h3 class="text-sm font-bold text-black dark:text-white leading-snug">${v.title}</h3>
+              <p class="text-[14.5px] text-black dark:text-white leading-relaxed truncate">${v.desc}</p>
+            </div>
           </div>
           <button onclick="openVideoPlayer('${v.embedUrl}')" class="p-2.5 px-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shrink-0 flex items-center gap-1.5 shadow-xs transition">
             <i data-lucide="play" class="w-4 h-4 fill-current"></i> Ver
@@ -1860,8 +1871,28 @@
       document.getElementById('modal-lightbox').classList.remove('hidden');
     }
 
+    function formatYoutubeEmbedUrl(url) {
+      if (!url) return '';
+      let videoId = '';
+      if (url.includes('youtu.be/')) {
+        videoId = url.split('youtu.be/')[1]?.split('?')[0]?.split('&')[0];
+      } else if (url.includes('youtube.com/watch')) {
+        const urlObj = new URL(url.startsWith('http') ? url : `https://${url}`);
+        videoId = urlObj.searchParams.get('v');
+      } else if (url.includes('youtube.com/embed/')) {
+        videoId = url.split('youtube.com/embed/')[1]?.split('?')[0]?.split('&')[0];
+      } else if (url.includes('youtube-nocookie.com/embed/')) {
+        videoId = url.split('youtube-nocookie.com/embed/')[1]?.split('?')[0]?.split('&')[0];
+      }
+      if (videoId) {
+        return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
+      }
+      return url;
+    }
+
     function openVideoPlayer(url) {
-      document.getElementById('video-iframe').src = url;
+      const embedUrl = formatYoutubeEmbedUrl(url);
+      document.getElementById('video-iframe').src = embedUrl;
       document.getElementById('modal-video').classList.remove('hidden');
     }
 
