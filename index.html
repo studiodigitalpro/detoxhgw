@@ -161,7 +161,29 @@
         transparent 40px
       );
     }
-    /* Deterrent copy protection class when enabled */
+    /* Deterrent copy protection and anti-theft */
+    *, *::before, *::after {
+      -webkit-user-select: none !important;
+      -moz-user-select: none !important;
+      -ms-user-select: none !important;
+      user-select: none !important;
+      -webkit-touch-callout: none !important;
+    }
+    input, textarea {
+      -webkit-user-select: text !important;
+      -moz-user-select: text !important;
+      -ms-user-select: text !important;
+      user-select: text !important;
+    }
+    img {
+      -webkit-user-drag: none !important;
+      -khtml-user-drag: none !important;
+      -moz-user-drag: none !important;
+      -o-user-drag: none !important;
+      user-drag: none !important;
+      -webkit-touch-callout: none !important;
+      pointer-events: auto;
+    }
     .user-select-none {
       -webkit-user-select: none !important;
       -moz-user-select: none !important;
@@ -169,8 +191,8 @@
       user-select: none !important;
     }
     .no-drag {
-      -webkit-user-drag: none;
-      user-drag: none;
+      -webkit-user-drag: none !important;
+      user-drag: none !important;
       pointer-events: auto;
     }
   </style>
@@ -749,9 +771,9 @@
               <i data-lucide="message-circle" class="w-5 h-5 mb-1"></i>
               <span>WhatsApp</span>
             </a>
-            <a id="btn-action-call" href="#" onclick="trackEvent('CallClick')" class="flex flex-col items-center justify-center p-3 rounded-2xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-black dark:text-slate-100 text-sm font-bold transition active:scale-95">
-              <i data-lucide="phone" class="w-5 h-5 mb-1 text-slate-700 dark:text-slate-300"></i>
-              <span>Llamar</span>
+            <a id="btn-action-store" href="https://www.healthgreenworld.com/?userName=Yamilka507" target="_blank" rel="noopener noreferrer" onclick="trackEvent('StoreClick')" class="flex flex-col items-center justify-center p-3 rounded-2xl bg-amber-500 hover:bg-amber-600 text-white text-sm font-bold shadow-sm transition active:scale-95">
+              <i data-lucide="shopping-bag" class="w-5 h-5 mb-1"></i>
+              <span>Tienda</span>
             </a>
             <a id="btn-action-email" href="#" onclick="trackEvent('EmailClick')" class="flex flex-col items-center justify-center p-3 rounded-2xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-black dark:text-slate-100 text-sm font-bold transition active:scale-95">
               <i data-lucide="mail" class="w-5 h-5 mb-1 text-slate-700 dark:text-slate-300"></i>
@@ -828,34 +850,34 @@
             </div>
           </section>
 
-          <!-- SECTION: PAGOS POR YAPPY -->
+          <!-- SECTION: CODIGO QR & TIENDA OFICIAL HGW -->
           <section id="sec-payment" class="space-y-2.5">
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-2">
-                <div class="w-2 h-5 rounded-full bg-sky-500"></div>
-                <h2 class="text-sm font-bold text-black dark:text-slate-200 uppercase tracking-wider">Pagos por Yappy</h2>
+                <div class="w-2 h-5 rounded-full bg-amber-500"></div>
+                <h2 class="text-sm font-bold text-black dark:text-slate-200 uppercase tracking-wider">Tienda Oficial HGW & Pagos</h2>
               </div>
-              <span class="text-xs font-bold text-sky-800 dark:text-sky-300 bg-sky-50 dark:bg-sky-950/80 px-2.5 py-1 rounded-full border border-sky-200 dark:border-sky-800">
-                Banco General
+              <span class="text-xs font-bold text-amber-800 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/80 px-2.5 py-1 rounded-full border border-amber-200 dark:border-amber-800 flex items-center gap-1">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Distribuidora Autorizada
               </span>
             </div>
-            <div class="p-4 rounded-2xl bg-gradient-to-br from-sky-50/80 to-blue-50/40 dark:from-slate-800/80 dark:to-sky-950/30 border border-sky-200/80 dark:border-sky-900/60 flex items-center gap-4">
-              <div onclick="openLightbox('https://lh3.googleusercontent.com/d/17XluHl2ZTjqw5Uu2VVdLZuwgMQkX5tzc', 'Código QR Pagos por Yappy - Yamilka Batista')" class="w-24 h-24 rounded-2xl overflow-hidden bg-white p-1.5 shadow-md border border-sky-100 dark:border-slate-700 cursor-pointer shrink-0 group relative" title="Toca para ampliar el QR">
-                <img src="https://lh3.googleusercontent.com/d/17XluHl2ZTjqw5Uu2VVdLZuwgMQkX5tzc" alt="QR Yappy" class="w-full h-full object-contain group-hover:scale-105 transition-transform" />
+            <div class="p-4 rounded-2xl bg-gradient-to-br from-amber-50/70 to-emerald-50/40 dark:from-slate-800/80 dark:to-emerald-950/30 border border-amber-200/80 dark:border-amber-900/60 flex items-center gap-4">
+              <div onclick="openLightbox('/qr-store.png', 'Código QR Tienda Oficial HGW - Yamilka Batista')" class="w-24 h-24 rounded-2xl overflow-hidden bg-white p-1.5 shadow-md border border-amber-200 dark:border-slate-700 cursor-pointer shrink-0 group relative" title="Toca para ampliar el QR">
+                <img src="/qr-store.png" alt="Código QR Tienda Oficial HGW" class="w-full h-full object-contain group-hover:scale-105 transition-transform" />
                 <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity rounded-2xl">
                   <i data-lucide="zoom-in" class="w-5 h-5 text-white"></i>
                 </div>
               </div>
               <div class="flex-1 min-w-0 space-y-1.5">
-                <span class="font-extrabold text-sm text-sky-950 dark:text-sky-200 block">Pagos al Instante con Yappy</span>
-                <p class="text-[14.5px] text-black dark:text-white leading-relaxed">Escanea el código QR o envía directamente a mi número de contacto.</p>
+                <span class="font-extrabold text-sm text-slate-900 dark:text-amber-200 block">Tienda Oficial HGW Panamá</span>
+                <p class="text-[14.5px] text-black dark:text-white leading-relaxed">Escanea el código QR o pulsa el enlace para comprar en mi tienda online.</p>
                 <div class="pt-1 flex items-center gap-2 flex-wrap">
-                  <button onclick="openLightbox('https://lh3.googleusercontent.com/d/17XluHl2ZTjqw5Uu2VVdLZuwgMQkX5tzc', 'Código QR Pagos por Yappy - Yamilka Batista')" class="px-3 py-1.5 text-xs font-bold bg-sky-600 hover:bg-sky-700 text-white rounded-lg flex items-center gap-1 shadow-xs transition">
-                    <i data-lucide="qr-code" class="w-3.5 h-3.5"></i> Ver QR
-                  </button>
-                  <a href="https://wa.me/50767603578?text=Hola%20Yamilka%2C%20te%20adjunto%20el%20comprobante%20de%20pago%20por%20Yappy" target="_blank" onclick="trackEvent('YappyProofClick')" class="px-3 py-1.5 text-xs font-semibold bg-white dark:bg-slate-800 text-black dark:text-slate-200 border border-slate-200 dark:border-slate-700 rounded-lg flex items-center gap-1 hover:bg-slate-50 transition">
-                    <i data-lucide="send" class="w-3.5 h-3.5 text-emerald-600"></i> Enviar Comprobante
+                  <a href="https://www.healthgreenworld.com/?userName=Yamilka507" target="_blank" rel="noopener noreferrer" onclick="trackEvent('StoreClick')" class="px-3.5 py-1.5 text-xs font-bold bg-amber-500 hover:bg-amber-600 text-white rounded-lg flex items-center gap-1.5 shadow-xs transition">
+                    <i data-lucide="shopping-cart" class="w-3.5 h-3.5"></i> Ir a la Tienda
                   </a>
+                  <button onclick="openLightbox('/qr-store.png', 'Código QR Tienda Oficial HGW - Yamilka Batista')" class="px-3 py-1.5 text-xs font-bold bg-white dark:bg-slate-800 text-black dark:text-slate-200 border border-slate-200 dark:border-slate-700 rounded-lg flex items-center gap-1 hover:bg-slate-50 transition">
+                    <i data-lucide="qr-code" class="w-3.5 h-3.5 text-emerald-600"></i> Ampliar QR
+                  </button>
                 </div>
               </div>
             </div>
@@ -1094,6 +1116,7 @@
         whatsapp: "+50767603578",
         whatsappMsg: "Hola Yamilka, vi tu Tarjeta Digital y deseo información sobre el protocolo detox de colon HGW.",
         phone: "+50767603578",
+        storeUrl: "https://www.healthgreenworld.com/?userName=Yamilka507",
         email: "info.yamilka@gmail.com",
         instagram: "yamilkabatista.hgw",
         facebook: "yamilka.batista.salud",
@@ -1413,7 +1436,10 @@
       const cleanPhone = c.whatsapp.replace(/[^0-9]/g, '');
       const encodedMsg = encodeURIComponent(c.whatsappMsg);
       document.getElementById('btn-action-whatsapp').href = `https://wa.me/${cleanPhone}?text=${encodedMsg}`;
-      document.getElementById('btn-action-call').href = `tel:${c.phone}`;
+      const storeBtn = document.getElementById('btn-action-store');
+      if (storeBtn) {
+        storeBtn.href = c.storeUrl || "https://www.healthgreenworld.com/?userName=Yamilka507";
+      }
       document.getElementById('btn-action-email').href = `mailto:${c.email}?subject=Consulta%20desde%20Tarjeta%20Digital`;
       document.getElementById('floating-whatsapp-btn').href = `https://wa.me/${cleanPhone}?text=${encodedMsg}`;
 
@@ -2206,6 +2232,48 @@
       a.click();
       showToast('Configuración exportada en JSON');
     }
+
+    // ==========================================
+    // CONTENT PROTECTION / ANTI-THEFT LISTENERS
+    // ==========================================
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+      showToast('Contenido protegido • No se permite copiar o descargar');
+      return false;
+    });
+
+    document.addEventListener('copy', function(e) {
+      e.preventDefault();
+      showToast('Copia de contenido deshabilitada');
+      return false;
+    });
+
+    document.addEventListener('cut', function(e) {
+      e.preventDefault();
+      return false;
+    });
+
+    document.addEventListener('dragstart', function(e) {
+      e.preventDefault();
+      return false;
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (
+        (e.ctrlKey || e.metaKey) &&
+        ['c', 'C', 'u', 'U', 's', 'S', 'p', 'P', 'a', 'A'].includes(e.key)
+      ) {
+        // Allow select all inside text inputs
+        if (e.key === 'a' || e.key === 'A') {
+          if (['INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
+            return true;
+          }
+        }
+        e.preventDefault();
+        showToast('Acción protegida');
+        return false;
+      }
+    });
   </script>
 
 </body>
