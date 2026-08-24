@@ -473,7 +473,7 @@
 
             <div class="pt-2">
               <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2">Enlaces a Redes Sociales</label>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
                   <span class="text-[11px] text-slate-500">Instagram (@usuario o URL)</span>
                   <input type="text" id="inp-instagram" oninput="updateSocial('instagram', this.value)" class="w-full px-3 py-1.5 text-xs rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white" />
@@ -481,10 +481,6 @@
                 <div>
                   <span class="text-[11px] text-slate-500">Facebook (URL o perfil)</span>
                   <input type="text" id="inp-facebook" oninput="updateSocial('facebook', this.value)" class="w-full px-3 py-1.5 text-xs rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white" />
-                </div>
-                <div>
-                  <span class="text-[11px] text-slate-500">TikTok (@usuario)</span>
-                  <input type="text" id="inp-tiktok" oninput="updateSocial('tiktok', this.value)" class="w-full px-3 py-1.5 text-xs rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white" />
                 </div>
                 <div>
                   <span class="text-[11px] text-slate-500">YouTube Channel</span>
@@ -1120,7 +1116,6 @@
         email: "info.yamilka@gmail.com",
         instagram: "yamilkabatista.hgw",
         facebook: "yamilka.batista.salud",
-        tiktok: "@yamilka_detox",
         youtube: "@yamilkabatista",
       },
       design: {
@@ -1252,6 +1247,10 @@
       if (!appData.profile) appData.profile = DEFAULT_DATA.profile;
       appData.profile.cover = "https://lh3.googleusercontent.com/d/1_gPer-hQ1WyKCJ84TpWnI5qrvoYtIAO7";
       appData.profile.avatar = "https://lh3.googleusercontent.com/d/1KeOPcyuhctKp1qJsNsfw-nlUuXzyU_hf";
+      if (appData.contacts) {
+        appData.contacts.tiktok = null;
+        appData.contacts.storeUrl = "https://www.healthgreenworld.com/?userName=Yamilka507";
+      }
       appData.products = DEFAULT_DATA.products;
       appData.testimonials = DEFAULT_DATA.testimonials;
       appData.gallery = DEFAULT_DATA.gallery;
@@ -1384,7 +1383,6 @@
       document.getElementById('inp-email').value = c.email || '';
       document.getElementById('inp-instagram').value = c.instagram || '';
       document.getElementById('inp-facebook').value = c.facebook || '';
-      document.getElementById('inp-tiktok').value = c.tiktok || '';
       document.getElementById('inp-youtube').value = c.youtube || '';
 
       document.getElementById('chk-prot-text').checked = pr.disableSelection;
@@ -1481,7 +1479,6 @@
       const list = [
         { icon: 'instagram', url: c.instagram ? (c.instagram.startsWith('http') ? c.instagram : `https://instagram.com/${c.instagram.replace('@', '')}`) : null, color: 'text-pink-600' },
         { icon: 'facebook', url: c.facebook ? (c.facebook.startsWith('http') ? c.facebook : `https://facebook.com/${c.facebook}`) : null, color: 'text-blue-600' },
-        { icon: 'music', url: c.tiktok ? (c.tiktok.startsWith('http') ? c.tiktok : `https://tiktok.com/${c.tiktok}`) : null, color: 'text-slate-800 dark:text-slate-200' },
         { icon: 'youtube', url: c.youtube ? (c.youtube.startsWith('http') ? c.youtube : `https://youtube.com/${c.youtube}`) : null, color: 'text-red-600' },
       ];
 
