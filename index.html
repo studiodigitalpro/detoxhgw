@@ -244,6 +244,9 @@
           <button onclick="setAdminTab('products')" id="tab-btn-products" class="admin-tab-btn px-3 py-1.5 rounded-lg text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 flex items-center gap-1.5 whitespace-nowrap">
             <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i> Productos & Promo
           </button>
+          <button onclick="setAdminTab('testimonials')" id="tab-btn-testimonials" class="admin-tab-btn px-3 py-1.5 rounded-lg text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 flex items-center gap-1.5 whitespace-nowrap">
+            <i data-lucide="message-square-quote" class="w-3.5 h-3.5"></i> Testimonios
+          </button>
           <button onclick="setAdminTab('gallery')" id="tab-btn-gallery" class="admin-tab-btn px-3 py-1.5 rounded-lg text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 flex items-center gap-1.5 whitespace-nowrap">
             <i data-lucide="image" class="w-3.5 h-3.5"></i> Fotos & Videos
           </button>
@@ -367,6 +370,10 @@
                   <span>Productos & Promo</span>
                 </label>
                 <label class="flex items-center gap-2 p-2 bg-slate-50 dark:bg-slate-800 rounded-lg text-xs cursor-pointer">
+                  <input type="checkbox" checked onchange="toggleSection('showTestimonials', this.checked)" class="rounded text-emerald-600 focus:ring-emerald-500">
+                  <span>Testimonios & Reseñas</span>
+                </label>
+                <label class="flex items-center gap-2 p-2 bg-slate-50 dark:bg-slate-800 rounded-lg text-xs cursor-pointer">
                   <input type="checkbox" checked onchange="toggleSection('showGallery', this.checked)" class="rounded text-emerald-600 focus:ring-emerald-500">
                   <span>Galería de Fotos</span>
                 </label>
@@ -455,6 +462,22 @@
             </div>
             <div id="admin-products-list" class="space-y-3">
               <!-- Dynamically rendered product list in admin -->
+            </div>
+          </div>
+
+          <!-- TAB: TESTIMONIALS & REVIEWS -->
+          <div id="admin-sec-testimonials" class="admin-sec-panel hidden space-y-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-xs font-bold text-slate-800 dark:text-slate-200">Testimonios de Clientes & Reseñas</span>
+                <p class="text-[11px] text-slate-500">Muestra opiniones con estrellas, comentarios y fotos de antes/después</p>
+              </div>
+              <button onclick="addNewTestimonialPrompt()" class="px-2.5 py-1 bg-emerald-600 text-white rounded-lg text-xs font-semibold flex items-center gap-1 hover:bg-emerald-700">
+                <i data-lucide="plus" class="w-3 h-3"></i> Agregar Testimonio
+              </button>
+            </div>
+            <div id="admin-testimonials-list" class="space-y-2.5">
+              <!-- Dynamically populated in JS -->
             </div>
           </div>
 
@@ -820,6 +843,26 @@
             </div>
           </section>
 
+          <!-- SECTION: TESTIMONIALS & REVIEWS -->
+          <section id="sec-testimonials" class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <div class="w-1.5 h-4 rounded-full bg-amber-500"></div>
+                <h2 class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">Testimonios de Clientes</h2>
+              </div>
+              <div class="flex items-center gap-1 text-[11px] font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded-full border border-amber-200 dark:border-amber-800/80">
+                <div class="flex items-center text-amber-500">
+                  <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                </div>
+                <span>5.0</span>
+                <span class="text-[9px] text-slate-400 font-normal">(Opiniones Reales)</span>
+              </div>
+            </div>
+            <div id="card-testimonials-container" class="space-y-2.5">
+              <!-- Dynamically populated in JS -->
+            </div>
+          </section>
+
           <!-- SECTION: PHOTO GALLERY & RESULTS -->
           <section id="sec-gallery" class="space-y-3">
             <div class="flex items-center justify-between">
@@ -1035,6 +1078,7 @@
       sections: {
         showAbout: true,
         showProducts: true,
+        showTestimonials: true,
         showGallery: true,
         showVideos: true,
         showDocuments: true,
@@ -1065,7 +1109,7 @@
           price: 13.00,
           originalPrice: 15.00,
           discount: 13,
-          image: "https://lh3.googleusercontent.com/d/1eqtaeeGd6Sg50planGIgXpFPIqVfMxK-"
+          image: "https://lh3.googleusercontent.com/d/1LqAFGpAKLBAMLpvxEnDOndJc-XTakPZo"
         },
         {
           id: "p2",
@@ -1088,12 +1132,44 @@
           image: "https://lh3.googleusercontent.com/d/147eYuppOHtKTV5w4r9ilZmfXuxghnfR7"
         }
       ],
+      testimonials: [
+        {
+          id: "t1",
+          name: "Yamilka Batista (Resultados Reales)",
+          role: "Protocolo 3 Días Detox HGW",
+          rating: 5,
+          date: "25 Ene 2026",
+          comment: "¡Resultados reales en solo 3 días! Desinflamación total de abdomen, ligereza increíble y regularización intestinal con Fresh Drink Chang Jin Jin y Proshaping Tea.",
+          image: "https://lh3.googleusercontent.com/d/1NM-Q79mG1UT8rWwMLKzWgBYa8sUVCDaS",
+          verified: true
+        },
+        {
+          id: "t2",
+          name: "María Elena González",
+          role: "David, Chiriquí",
+          rating: 5,
+          date: "Hace 1 semana",
+          comment: "Excelente el Fresh Drink. Tenía problemas severos de estreñimiento e inflamación y desde la primera toma sentí un alivio enorme. El envío por Servientrega llegó al día siguiente.",
+          image: "",
+          verified: true
+        },
+        {
+          id: "t3",
+          name: "Carlos Mendoza",
+          role: "Santiago de Veraguas",
+          rating: 5,
+          date: "Hace 2 semanas",
+          comment: "El combo con el té me ayudó a desinflamar el abdomen y regular mi digestión por completo. La asesoría personalizada de Yamilka es de 10 estrellas.",
+          image: "",
+          verified: true
+        }
+      ],
       gallery: [
         {
           id: "g1",
           title: "Fresh Drink Chang Jin Jin (6 Sobres - B/. 13.00)",
           desc: "Limpieza Intestinal Rápida y Natural HGW",
-          url: "https://lh3.googleusercontent.com/d/1eqtaeeGd6Sg50planGIgXpFPIqVfMxK-"
+          url: "https://lh3.googleusercontent.com/d/1LqAFGpAKLBAMLpvxEnDOndJc-XTakPZo"
         },
         {
           id: "g2",
@@ -1109,6 +1185,12 @@
         },
         {
           id: "g4",
+          title: "Resultados Reales: Protocolo Detox 3 Días",
+          desc: "Desinflamación de colon y reducción de abdomen",
+          url: "https://lh3.googleusercontent.com/d/1NM-Q79mG1UT8rWwMLKzWgBYa8sUVCDaS"
+        },
+        {
+          id: "g5",
           title: "Código QR para Pagos por Yappy",
           desc: "Pagos directos, rápidos y seguros con Yappy",
           url: "https://lh3.googleusercontent.com/d/17XluHl2ZTjqw5Uu2VVdLZuwgMQkX5tzc"
@@ -1156,17 +1238,23 @@
 
     // APP STATE
     let appData = JSON.parse(localStorage.getItem('tarjeta_digital_data')) || DEFAULT_DATA;
-    // Auto-migrate to latest real products, images, and prices
+    // Auto-migrate to latest real products, images, testimonials, and prices
     if (appData) {
       if (!appData.profile || appData.profile.avatar.includes('unsplash.com') || !appData.profile.avatar) {
         if (!appData.profile) appData.profile = DEFAULT_DATA.profile;
         appData.profile.avatar = "https://lh3.googleusercontent.com/d/1KeOPcyuhctKp1qJsNsfw-nlUuXzyU_hf";
       }
       // Migrate products if they have old placeholder prices or unsplash images
-      if (!appData.products || appData.products.length === 0 || (appData.products[0] && appData.products[0].image.includes('unsplash.com')) || (appData.products[0] && appData.products[0].price === 45)) {
+      if (!appData.products || appData.products.length === 0 || (appData.products[0] && appData.products[0].image.includes('unsplash.com')) || (appData.products[0] && appData.products[0].price === 45) || (appData.products[0] && !appData.products[0].image.includes('1LqAFGpAKLBAMLpvxEnDOndJc-XTakPZo'))) {
         appData.products = DEFAULT_DATA.products;
         appData.gallery = DEFAULT_DATA.gallery;
         appData.faq = DEFAULT_DATA.faq;
+      }
+      if (!appData.testimonials || appData.testimonials.length === 0) {
+        appData.testimonials = DEFAULT_DATA.testimonials;
+      }
+      if (appData.sections && appData.sections.showTestimonials === undefined) {
+        appData.sections.showTestimonials = true;
       }
       localStorage.setItem('tarjeta_digital_data', JSON.stringify(appData));
     }
@@ -1333,6 +1421,8 @@
       // Section Toggles
       document.getElementById('sec-about').style.display = s.showAbout ? 'block' : 'none';
       document.getElementById('sec-products').style.display = s.showProducts ? 'block' : 'none';
+      const secTestimonials = document.getElementById('sec-testimonials');
+      if (secTestimonials) secTestimonials.style.display = s.showTestimonials !== false ? 'block' : 'none';
       document.getElementById('sec-gallery').style.display = s.showGallery ? 'block' : 'none';
       document.getElementById('sec-videos').style.display = s.showVideos ? 'block' : 'none';
       document.getElementById('sec-documents').style.display = s.showDocuments ? 'block' : 'none';
@@ -1341,6 +1431,7 @@
 
       // Render Dynamic Blocks
       renderProductsBlock();
+      renderTestimonialsBlock();
       renderShippingBlock();
       renderGalleryBlock();
       renderVideosBlock();
@@ -1410,6 +1501,89 @@
               </a>
             </div>
           </div>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    // RENDER TESTIMONIALS BLOCK
+    function renderTestimonialsBlock() {
+      const container = document.getElementById('card-testimonials-container');
+      if (!container) return;
+      container.innerHTML = '';
+      const list = appData.testimonials || [];
+
+      if (list.length === 0) {
+        container.innerHTML = `<div class="p-3 text-center text-xs text-slate-400">No hay testimonios agregados aún.</div>`;
+        return;
+      }
+
+      list.forEach(t => {
+        const item = document.createElement('div');
+        item.className = "p-3.5 rounded-2xl bg-white dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 shadow-xs space-y-2.5";
+        
+        // Render Star SVGs
+        let starsHtml = '';
+        const rating = Math.max(1, Math.min(5, t.rating || 5));
+        for (let i = 1; i <= 5; i++) {
+          if (i <= rating) {
+            starsHtml += `<i data-lucide="star" class="w-3 h-3 fill-amber-400 text-amber-400"></i>`;
+          } else {
+            starsHtml += `<i data-lucide="star" class="w-3 h-3 text-slate-300 dark:text-slate-600"></i>`;
+          }
+        }
+
+        // Initials avatar
+        const initials = t.name.split(' ').map(w => w[0]).filter(Boolean).slice(0, 2).join('').toUpperCase() || 'CL';
+
+        // Optional photo
+        let photoHtml = '';
+        if (t.image && t.image.trim()) {
+          photoHtml = `
+            <div onclick="openLightbox('${t.image}', 'Testimonio / Resultados: ${t.name}')" class="mt-2 p-1.5 bg-slate-50 dark:bg-slate-700/60 rounded-xl border border-slate-100 dark:border-slate-700 flex items-center gap-2.5 cursor-pointer group hover:bg-slate-100 transition" title="Toca para ampliar foto del testimonio">
+              <div class="w-14 h-14 rounded-lg overflow-hidden shrink-0 bg-slate-200 dark:bg-slate-600 relative">
+                <img src="${t.image}" alt="${t.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+                  <i data-lucide="zoom-in" class="w-3 h-3 text-white"></i>
+                </div>
+              </div>
+              <div class="flex-1 min-w-0">
+                <span class="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
+                  <i data-lucide="sparkles" class="w-3 h-3"></i> Foto de Resultado Real
+                </span>
+                <span class="text-[10px] text-slate-500 dark:text-slate-400 block truncate">Toca aquí para ver antes y después</span>
+              </div>
+              <span class="px-2 py-1 bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 text-[10px] font-bold rounded-lg border border-emerald-200 dark:border-emerald-800">
+                Ver
+              </span>
+            </div>
+          `;
+        }
+
+        item.innerHTML = `
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2 min-w-0">
+              <div class="w-7 h-7 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-bold text-[10px] flex items-center justify-center shrink-0 border border-emerald-200 dark:border-emerald-800">
+                ${initials}
+              </div>
+              <div class="min-w-0">
+                <div class="flex items-center gap-1.5">
+                  <h3 class="text-xs font-bold text-slate-900 dark:text-white truncate">${t.name}</h3>
+                  <span class="inline-flex items-center gap-0.5 text-[9px] font-semibold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/80 px-1.5 py-0.2 rounded border border-emerald-200/60 dark:border-emerald-800/60">
+                    <i data-lucide="check-check" class="w-2.5 h-2.5"></i> Verificado
+                  </span>
+                </div>
+                <span class="text-[10px] text-slate-500 dark:text-slate-400 block truncate">${t.role || 'Cliente'} • ${t.date || 'Reciente'}</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-0.5 shrink-0 bg-amber-50 dark:bg-amber-950/40 px-1.5 py-0.5 rounded-md border border-amber-200/50 dark:border-amber-800/50">
+              ${starsHtml}
+            </div>
+          </div>
+          <p class="text-xs text-slate-700 dark:text-slate-300 italic leading-relaxed">
+            "${t.comment}"
+          </p>
+          ${photoHtml}
         `;
         container.appendChild(item);
       });
@@ -1832,7 +2006,106 @@
       renderAdminLists();
     }
 
+    function addNewTestimonialPrompt() {
+      const name = prompt('Nombre del cliente:', 'Nuevo Cliente Satisfecho');
+      if (!name) return;
+      const role = prompt('Ciudad / Tratamiento:', 'Panamá - Protocolo Detox');
+      const rating = parseInt(prompt('Calificación por estrellas (1 a 5):', '5')) || 5;
+      const comment = prompt('Comentario / Testimonio:', 'Excelente producto y atención. Vi resultados desde los primeros días.');
+      if (!comment) return;
+      const image = prompt('URL de foto de antes/después o comprobante (opcional):', '') || '';
+
+      if (!appData.testimonials) appData.testimonials = [];
+      appData.testimonials.push({
+        id: 't_' + Date.now(),
+        name,
+        role: role || 'Cliente',
+        rating: Math.max(1, Math.min(5, rating)),
+        date: 'Reciente',
+        comment,
+        image: image.trim(),
+        verified: true
+      });
+      saveAndSync();
+      renderAdminLists();
+      showToast('✅ Testimonio añadido con éxito');
+    }
+
+    function editTestimonialPrompt(index) {
+      const t = appData.testimonials[index];
+      if (!t) return;
+      const name = prompt('Nombre del cliente:', t.name);
+      if (!name) return;
+      const role = prompt('Ciudad / Tratamiento:', t.role);
+      const rating = parseInt(prompt('Calificación (1 a 5):', t.rating || 5)) || 5;
+      const comment = prompt('Comentario:', t.comment);
+      if (!comment) return;
+      const image = prompt('URL de foto (opcional):', t.image || '');
+
+      t.name = name;
+      t.role = role || 'Cliente';
+      t.rating = Math.max(1, Math.min(5, rating));
+      t.comment = comment;
+      t.image = (image || '').trim();
+
+      saveAndSync();
+      renderAdminLists();
+      showToast('✅ Testimonio actualizado');
+    }
+
+    function deleteTestimonial(idx) {
+      if (confirm('¿Eliminar este testimonio?')) {
+        appData.testimonials.splice(idx, 1);
+        saveAndSync();
+        renderAdminLists();
+        showToast('Testimonio eliminado');
+      }
+    }
+
     function renderAdminLists() {
+      // Testimonials list in admin
+      const tList = document.getElementById('admin-testimonials-list');
+      if (tList) {
+        tList.innerHTML = '';
+        const list = appData.testimonials || [];
+        if (list.length === 0) {
+          tList.innerHTML = `<div class="p-4 text-center text-xs text-slate-400 bg-slate-50 dark:bg-slate-800 rounded-xl border border-dashed border-slate-200 dark:border-slate-700">No hay testimonios registrados. Haz clic en "+ Agregar Testimonio".</div>`;
+        } else {
+          list.forEach((t, index) => {
+            const row = document.createElement('div');
+            row.className = "p-3 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 space-y-1.5 text-xs";
+            
+            let stars = '';
+            for (let s = 1; s <= 5; s++) {
+              stars += s <= (t.rating || 5) ? '★' : '☆';
+            }
+
+            const imgBadge = t.image ? `<span class="px-1.5 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 text-[10px] font-semibold flex items-center gap-1"><i data-lucide="image" class="w-3 h-3"></i> Con Foto</span>` : '';
+
+            row.innerHTML = `
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="font-bold text-slate-900 dark:text-white">${t.name}</span>
+                  <span class="text-[11px] text-amber-500 font-bold">${stars} (${t.rating || 5}/5)</span>
+                  ${imgBadge}
+                </div>
+                <div class="flex items-center gap-1">
+                  <button onclick="editTestimonialPrompt(${index})" class="text-slate-500 hover:text-emerald-600 p-1 hover:bg-slate-200 dark:hover:bg-slate-700 rounded" title="Editar">
+                    <i data-lucide="pencil" class="w-3.5 h-3.5"></i>
+                  </button>
+                  <button onclick="deleteTestimonial(${index})" class="text-red-500 p-1 hover:bg-red-50 dark:hover:bg-red-950/40 rounded" title="Eliminar">
+                    <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+              </div>
+              <p class="text-[11px] text-slate-600 dark:text-slate-300 italic line-clamp-2">"${t.comment}"</p>
+              <div class="text-[10px] text-slate-400">${t.role || 'Cliente'} • ${t.date || 'Reciente'}</div>
+            `;
+            tList.appendChild(row);
+          });
+        }
+      }
+
       // Products list in admin
       const pList = document.getElementById('admin-products-list');
       if (pList) {
